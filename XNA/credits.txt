@@ -1,0 +1,15 @@
+Artwork
+ + http://arboris.deviantart.com/art/Spaceship-sprites-43030167
+
+Explosion
+ + http://img206.imageshack.us/i/marinezsheetbq3.png/
+
+Not Used
+ + http://media.photobucket.com/image/explosion%20sprite/CodeH4x0r/explosion17.png
+ + http://images.google.ca/imgres?imgurl=http://www.emunix.emich.edu/~evett/GameProgramming/BookCode/chapter09.new/multiplesprites/asteroid.bmp&imgrefurl=http://www.emunix.emich.edu/~evett/GameProgramming/allegro_howTo.html&usg=__lRWWqj8pC4BNiZ-WgFS-Ygz2OA4=&h=519&w=516&sz=785&hl=en&start=18&um=1&itbs=1&tbnid=4bk5KyYsWFOn7M:&tbnh=131&tbnw=130&prev=/images%3Fq%3Dexplosion%2Bsprite%26um%3D1%26hl%3Den%26sa%3DN%26tbs%3Disch:1
+ + http://www.pixeljoint.com/files/icons/full/xy_st3boss_asteroid01.gif
+ + http://twistedphysics.typepad.com/cocktail_party_physics/images/2007/05/18/vesta.jpg
+
+Sound Effects
+ + http://www.therecordist.com/pages/game_sfx.html
+ + http://www.soundjay.com/button-sounds-1.html

@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Asteroids", "Asteroids.vcproj", "{328E0686-7E00-46FA-8A1C-A704113836B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{328E0686-7E00-46FA-8A1C-A704113836B0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{328E0686-7E00-46FA-8A1C-A704113836B0}.Debug|Win32.Build.0 = Debug|Win32
+		{328E0686-7E00-46FA-8A1C-A704113836B0}.Release|Win32.ActiveCfg = Release|Win32
+		{328E0686-7E00-46FA-8A1C-A704113836B0}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
