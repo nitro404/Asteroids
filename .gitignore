@@ -1,0 +1,21 @@
+**/Debug
+**/Release/
+**/obj/
+**/bin/
+**/old/
+**/Backup/
+**/Misc/
+**/Release Copy/
+*.cachefile
+*.suo
+*.pdb
+*.vcproj.*.user
+*.zip
+*.exe
+*.pdf
+**/Artwork/
+*.csproj.user
+**/Originals/
+*.html
+*.htm
+TODO.txt
