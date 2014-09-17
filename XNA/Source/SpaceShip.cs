@@ -267,7 +267,7 @@ namespace Asteroids {
 
 			if(Math.Abs((v.X - m_velocity.X) / v.X) < 0.1f && Math.Abs((v.Y - m_velocity.Y) / v.Y) < 0.1f) {
 				float dx = v.X - m_velocity.X;
-				float dy = v.X - m_velocity.Y;
+				float dy = v.Y - m_velocity.Y;
 				dx /= v.X;
 				dy /= v.Y;
 				dx = Math.Abs(v.X - m_velocity.X) / v.X;
