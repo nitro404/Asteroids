@@ -121,11 +121,18 @@
     <ClInclude Include="Source\Game Objects\SpaceShipColour.h" />
     <ClInclude Include="Source\Game Objects\SpaceShipSystem.h" />
     <ClInclude Include="Source\Game Objects\SpaceShipMovementDirection.h" />
+    <ClInclude Include="Source\Icon.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Supernova Engine\Supernova Engine\Supernova Engine.vcxproj">
       <Project>{43b90272-7a66-44c2-a851-315cb08b1536}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Asteroids.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Asteroids.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

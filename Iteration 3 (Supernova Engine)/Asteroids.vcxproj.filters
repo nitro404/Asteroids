@@ -101,5 +101,12 @@
     <ClInclude Include="Source\Game Objects\ScoreType.h">
       <Filter>Game Objects</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Icon.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Asteroids.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Asteroids.rc" />
   </ItemGroup>
 </Project>
