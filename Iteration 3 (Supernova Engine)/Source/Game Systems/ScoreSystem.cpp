@@ -1,5 +1,5 @@
-#include "Game Objects/SpaceShipSystem.h"
-#include "Game Objects/ScoreSystem.h"
+#include "Game Systems/SpaceShipSystem.h"
+#include "Game Systems/ScoreSystem.h"
 
 ScoreSystem::ScoreSystem()
 	: Entity()

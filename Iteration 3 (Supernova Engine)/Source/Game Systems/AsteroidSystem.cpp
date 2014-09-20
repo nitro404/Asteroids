@@ -1,5 +1,5 @@
-#include "Game Objects/SpaceShipSystem.h"
-#include "Game Objects/AsteroidSystem.h"
+#include "Game Systems/SpaceShipSystem.h"
+#include "Game Systems/AsteroidSystem.h"
 
 const int AsteroidSystem::maxNumberOfAsteroids = 22;
 const int AsteroidSystem::numberOfAsteroidSprites = 6;

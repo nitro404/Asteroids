@@ -4,6 +4,9 @@
     <Filter Include="Game Objects">
       <UniqueIdentifier>{2b566bb4-97ed-49dd-b8c8-c37253f73059}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game Systems">
+      <UniqueIdentifier>{a325eb3a-0c61-4aa6-9a04-931610afb62c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp" />
@@ -13,25 +16,10 @@
     <ClCompile Include="Source\Game Objects\SpaceShip.cpp">
       <Filter>Game Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game Objects\AsteroidSystem.cpp">
-      <Filter>Game Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Game Objects\CollisionSystem.cpp">
-      <Filter>Game Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Game Objects\Explosion.cpp">
       <Filter>Game Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game Objects\ExplosionSystem.cpp">
-      <Filter>Game Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Game Objects\Projectile.cpp">
-      <Filter>Game Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Game Objects\ProjectileSystem.cpp">
-      <Filter>Game Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Game Objects\SpaceShipSystem.cpp">
       <Filter>Game Objects</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game Objects\SpaceShipMovementDirection.cpp">
@@ -47,11 +35,26 @@
     <ClCompile Include="Source\Game Objects\AsteroidType.cpp">
       <Filter>Game Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game Objects\ScoreSystem.cpp">
-      <Filter>Game Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Game Objects\ScoreType.cpp">
       <Filter>Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game Systems\AsteroidSystem.cpp">
+      <Filter>Game Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game Systems\CollisionSystem.cpp">
+      <Filter>Game Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game Systems\ExplosionSystem.cpp">
+      <Filter>Game Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game Systems\ProjectileSystem.cpp">
+      <Filter>Game Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game Systems\ScoreSystem.cpp">
+      <Filter>Game Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game Systems\SpaceShipSystem.cpp">
+      <Filter>Game Systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -61,25 +64,10 @@
     <ClInclude Include="Source\Game Objects\SpaceShip.h">
       <Filter>Game Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game Objects\AsteroidSystem.h">
-      <Filter>Game Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game Objects\CollisionSystem.h">
-      <Filter>Game Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Game Objects\Explosion.h">
       <Filter>Game Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game Objects\ExplosionSystem.h">
-      <Filter>Game Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Game Objects\Projectile.h">
-      <Filter>Game Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game Objects\ProjectileSystem.h">
-      <Filter>Game Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game Objects\SpaceShipSystem.h">
       <Filter>Game Objects</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game Objects\SpaceShipMovementDirection.h">
@@ -95,13 +83,28 @@
     <ClInclude Include="Source\Game Objects\AsteroidType.h">
       <Filter>Game Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game Objects\ScoreSystem.h">
-      <Filter>Game Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Game Objects\ScoreType.h">
       <Filter>Game Objects</Filter>
     </ClInclude>
     <ClInclude Include="Source\Icon.h" />
+    <ClInclude Include="Source\Game Systems\AsteroidSystem.h">
+      <Filter>Game Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game Systems\CollisionSystem.h">
+      <Filter>Game Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game Systems\ExplosionSystem.h">
+      <Filter>Game Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game Systems\ProjectileSystem.h">
+      <Filter>Game Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game Systems\ScoreSystem.h">
+      <Filter>Game Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game Systems\SpaceShipSystem.h">
+      <Filter>Game Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Asteroids.ico" />

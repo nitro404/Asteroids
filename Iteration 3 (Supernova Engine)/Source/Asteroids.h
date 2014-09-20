@@ -2,12 +2,12 @@
 #define ASTEROIDS_H
 
 #include "Engine.h"
-#include "Game Objects/ProjectileSystem.h"
-#include "Game Objects/SpaceShipSystem.h"
-#include "Game Objects/AsteroidSystem.h"
-#include "Game Objects/ExplosionSystem.h"
-#include "Game Objects/CollisionSystem.h"
-#include "Game Objects/ScoreSystem.h"
+#include "Game Systems/ProjectileSystem.h"
+#include "Game Systems/SpaceShipSystem.h"
+#include "Game Systems/AsteroidSystem.h"
+#include "Game Systems/ExplosionSystem.h"
+#include "Game Systems/CollisionSystem.h"
+#include "Game Systems/ScoreSystem.h"
 
 class Asteroids : public Engine {
 public:

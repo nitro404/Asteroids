@@ -5,7 +5,7 @@
 #include "Entity/AnimatedEntity2D.h"
 #include "Game Objects/SpaceShipMovementDirection.h"
 #include "Game Objects/SpaceShipColour.h"
-#include "Game Objects/ProjectileSystem.h"
+#include "Game Systems/ProjectileSystem.h"
 
 class SpaceShip : public AnimatedEntity2D {
 public:

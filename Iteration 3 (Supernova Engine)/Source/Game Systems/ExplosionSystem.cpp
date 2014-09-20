@@ -1,4 +1,4 @@
-#include "Game Objects/ExplosionSystem.h"
+#include "Game Systems/ExplosionSystem.h"
 
 ExplosionSystem::ExplosionSystem()
 	: Entity()

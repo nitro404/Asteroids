@@ -88,39 +88,39 @@
   <ItemGroup>
     <ClCompile Include="Source\Asteroids.cpp" />
     <ClCompile Include="Source\Game Objects\Asteroid.cpp" />
-    <ClCompile Include="Source\Game Objects\AsteroidSystem.cpp" />
     <ClCompile Include="Source\Game Objects\AsteroidType.cpp" />
-    <ClCompile Include="Source\Game Objects\CollisionSystem.cpp" />
     <ClCompile Include="Source\Game Objects\Explosion.cpp" />
-    <ClCompile Include="Source\Game Objects\ExplosionSystem.cpp" />
     <ClCompile Include="Source\Game Objects\Projectile.cpp" />
-    <ClCompile Include="Source\Game Objects\ProjectileSystem.cpp" />
     <ClCompile Include="Source\Game Objects\RotationDirection.cpp" />
-    <ClCompile Include="Source\Game Objects\ScoreSystem.cpp" />
     <ClCompile Include="Source\Game Objects\ScoreType.cpp" />
     <ClCompile Include="Source\Game Objects\SpaceShip.cpp" />
     <ClCompile Include="Source\Game Objects\SpaceShipColour.cpp" />
-    <ClCompile Include="Source\Game Objects\SpaceShipSystem.cpp" />
     <ClCompile Include="Source\Game Objects\SpaceShipMovementDirection.cpp" />
+    <ClCompile Include="Source\Game Systems\AsteroidSystem.cpp" />
+    <ClCompile Include="Source\Game Systems\CollisionSystem.cpp" />
+    <ClCompile Include="Source\Game Systems\ExplosionSystem.cpp" />
+    <ClCompile Include="Source\Game Systems\ProjectileSystem.cpp" />
+    <ClCompile Include="Source\Game Systems\ScoreSystem.cpp" />
+    <ClCompile Include="Source\Game Systems\SpaceShipSystem.cpp" />
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Asteroids.h" />
     <ClInclude Include="Source\Game Objects\Asteroid.h" />
-    <ClInclude Include="Source\Game Objects\AsteroidSystem.h" />
     <ClInclude Include="Source\Game Objects\AsteroidType.h" />
-    <ClInclude Include="Source\Game Objects\CollisionSystem.h" />
     <ClInclude Include="Source\Game Objects\Explosion.h" />
-    <ClInclude Include="Source\Game Objects\ExplosionSystem.h" />
     <ClInclude Include="Source\Game Objects\Projectile.h" />
-    <ClInclude Include="Source\Game Objects\ProjectileSystem.h" />
     <ClInclude Include="Source\Game Objects\RotationDirection.h" />
-    <ClInclude Include="Source\Game Objects\ScoreSystem.h" />
     <ClInclude Include="Source\Game Objects\ScoreType.h" />
     <ClInclude Include="Source\Game Objects\SpaceShip.h" />
     <ClInclude Include="Source\Game Objects\SpaceShipColour.h" />
-    <ClInclude Include="Source\Game Objects\SpaceShipSystem.h" />
     <ClInclude Include="Source\Game Objects\SpaceShipMovementDirection.h" />
+    <ClInclude Include="Source\Game Systems\AsteroidSystem.h" />
+    <ClInclude Include="Source\Game Systems\CollisionSystem.h" />
+    <ClInclude Include="Source\Game Systems\ExplosionSystem.h" />
+    <ClInclude Include="Source\Game Systems\ProjectileSystem.h" />
+    <ClInclude Include="Source\Game Systems\ScoreSystem.h" />
+    <ClInclude Include="Source\Game Systems\SpaceShipSystem.h" />
     <ClInclude Include="Source\Icon.h" />
   </ItemGroup>
   <ItemGroup>

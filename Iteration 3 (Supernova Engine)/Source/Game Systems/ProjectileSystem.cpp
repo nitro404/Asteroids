@@ -1,5 +1,5 @@
 #include "Game Objects/SpaceShip.h"
-#include "Game Objects/ProjectileSystem.h"
+#include "Game Systems/ProjectileSystem.h"
 
 ProjectileSystem::ProjectileSystem()
 	: Entity()

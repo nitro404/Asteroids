@@ -1,4 +1,4 @@
-#include "Game Objects/SpaceShipSystem.h"
+#include "Game Systems/SpaceShipSystem.h"
 
 const int SpaceShipSystem::maxNumberOfSpaceShips = SpaceShipColours::NumberOfColours;
 
