@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6E5CFB7A-F150-49A5-911B-D11232CBCD1C}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Asteroids</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Qt\Qt5.3.1\5.3\msvc2013_opengl\include;C:\Qt\Qt5.3.1\5.3\msvc2013_opengl\include\QtCore;$(ProgramFiles)\FMOD SoundSystem\FMOD Programmers API Windows\api\inc;$(ProgramFiles)\Visual Leak Detector\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Qt\Qt5.3.1\5.3\msvc2013_opengl\lib;$(ProgramFiles)\FMOD SoundSystem\FMOD Programmers API Windows\api\lib;$(ProgramFiles)\Visual Leak Detector\lib\Win32;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\Qt\Qt5.3.1\5.3\msvc2013_opengl\include;C:\Qt\Qt5.3.1\5.3\msvc2013_opengl\include\QtCore;$(ProgramFiles)\FMOD SoundSystem\FMOD Programmers API Windows\api\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Qt\Qt5.3.1\5.3\msvc2013_opengl\lib;$(ProgramFiles)\FMOD SoundSystem\FMOD Programmers API Windows\api\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./Source;../../Supernova Engine/Supernova Engine/Source;../../Supernova Engine/Supernova Engine/Source/Libraries/GL;../../Supernova Engine/Supernova Engine/Source/Libraries/SDL;../../Supernova Engine/Supernova Engine/Source/Libraries/FreeImage</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Qt5Cored.lib;OpenGL32.lib;GLU32.lib;SDL2.lib;SDL2main.lib;glew32s.lib;libfreetype-6.lib;SDL2_ttf.lib;FreeImage.lib;fmodex_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./Lib/x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./Source;../../Supernova Engine/Supernova Engine/Source;../../Supernova Engine/Supernova Engine/Source/Libraries/GL;../../Supernova Engine/Supernova Engine/Source/Libraries/SDL;../../Supernova Engine/Supernova Engine/Source/Libraries/FreeImage</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>Qt5Core.lib;OpenGL32.lib;GLU32.lib;SDL2.lib;SDL2main.lib;glew32s.lib;libfreetype-6.lib;SDL2_ttf.lib;FreeImage.lib;fmodex_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./Lib/x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Asteroids.cpp" />
+    <ClCompile Include="Source\Game Objects\Asteroid.cpp" />
+    <ClCompile Include="Source\Game Objects\AsteroidSystem.cpp" />
+    <ClCompile Include="Source\Game Objects\AsteroidType.cpp" />
+    <ClCompile Include="Source\Game Objects\CollisionSystem.cpp" />
+    <ClCompile Include="Source\Game Objects\Explosion.cpp" />
+    <ClCompile Include="Source\Game Objects\ExplosionSystem.cpp" />
+    <ClCompile Include="Source\Game Objects\Projectile.cpp" />
+    <ClCompile Include="Source\Game Objects\ProjectileSystem.cpp" />
+    <ClCompile Include="Source\Game Objects\RotationDirection.cpp" />
+    <ClCompile Include="Source\Game Objects\ScoreSystem.cpp" />
+    <ClCompile Include="Source\Game Objects\ScoreType.cpp" />
+    <ClCompile Include="Source\Game Objects\SpaceShip.cpp" />
+    <ClCompile Include="Source\Game Objects\SpaceShipColour.cpp" />
+    <ClCompile Include="Source\Game Objects\SpaceShipSystem.cpp" />
+    <ClCompile Include="Source\Game Objects\SpaceShipMovementDirection.cpp" />
+    <ClCompile Include="Source\Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Asteroids.h" />
+    <ClInclude Include="Source\Game Objects\Asteroid.h" />
+    <ClInclude Include="Source\Game Objects\AsteroidSystem.h" />
+    <ClInclude Include="Source\Game Objects\AsteroidType.h" />
+    <ClInclude Include="Source\Game Objects\CollisionSystem.h" />
+    <ClInclude Include="Source\Game Objects\Explosion.h" />
+    <ClInclude Include="Source\Game Objects\ExplosionSystem.h" />
+    <ClInclude Include="Source\Game Objects\Projectile.h" />
+    <ClInclude Include="Source\Game Objects\ProjectileSystem.h" />
+    <ClInclude Include="Source\Game Objects\RotationDirection.h" />
+    <ClInclude Include="Source\Game Objects\ScoreSystem.h" />
+    <ClInclude Include="Source\Game Objects\ScoreType.h" />
+    <ClInclude Include="Source\Game Objects\SpaceShip.h" />
+    <ClInclude Include="Source\Game Objects\SpaceShipColour.h" />
+    <ClInclude Include="Source\Game Objects\SpaceShipSystem.h" />
+    <ClInclude Include="Source\Game Objects\SpaceShipMovementDirection.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Supernova Engine\Supernova Engine\Supernova Engine.vcxproj">
+      <Project>{43b90272-7a66-44c2-a851-315cb08b1536}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

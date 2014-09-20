@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Asteroids", "Asteroids.vcxproj", "{6E5CFB7A-F150-49A5-911B-D11232CBCD1C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{43B90272-7A66-44C2-A851-315CB08B1536} = {43B90272-7A66-44C2-A851-315CB08B1536}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Supernova Engine", "..\..\Supernova Engine\Supernova Engine\Supernova Engine.vcxproj", "{43B90272-7A66-44C2-A851-315CB08B1536}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E5CFB7A-F150-49A5-911B-D11232CBCD1C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6E5CFB7A-F150-49A5-911B-D11232CBCD1C}.Debug|Win32.Build.0 = Debug|Win32
+		{6E5CFB7A-F150-49A5-911B-D11232CBCD1C}.Release|Win32.ActiveCfg = Release|Win32
+		{6E5CFB7A-F150-49A5-911B-D11232CBCD1C}.Release|Win32.Build.0 = Release|Win32
+		{43B90272-7A66-44C2-A851-315CB08B1536}.Debug|Win32.ActiveCfg = Debug|Win32
+		{43B90272-7A66-44C2-A851-315CB08B1536}.Debug|Win32.Build.0 = Debug|Win32
+		{43B90272-7A66-44C2-A851-315CB08B1536}.Release|Win32.ActiveCfg = Release|Win32
+		{43B90272-7A66-44C2-A851-315CB08B1536}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

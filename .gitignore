@@ -9,7 +9,13 @@
 *.cachefile
 *.suo
 *.pdb
+*.ncb
+*.sdf
+*.vcproj.*
 *.vcproj.*.user
+*.vcxproj.user
+*.csproj.user
+*.opensdf
 *.zip
 *.exe
 *.pdf
