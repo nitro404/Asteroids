@@ -151,6 +151,7 @@ void CollisionSystem::update(unsigned int timeElapsed) {
 
 			if(s->checkCollision(*a)) {
 				m_explosionSystem->spawnExplosion(s->getPosition(), s->getVelocity());
+				m_explosionSystem->spawnExplosion(a->getPosition(), a->getVelocity());
 
 				s->reset();
 
@@ -210,10 +211,10 @@ void CollisionSystem::handleAsteroidCollision(Asteroid * a, Asteroid * b) {
 	double v = a->getSpeed();
 
 	double dx = abs(b->x() - a->x());
-	double dy = abs(b->y() - a->y());
-	double d = sqrt((dx * dx) + (dy * dy));
+	double dy = abs(a->y() - b->y());
+	double d = sqrt(pow(dx, 2) + pow(dy, 2));
 
-	if(d == 0) { return; }
+	if(d == 0.0) { return; }
 
 	double angle_b = asin(dy / d);
 	double angle_d = asin(abs(a->getVelocity().x) / v);
@@ -261,9 +262,6 @@ void CollisionSystem::handleAsteroidCollision(Asteroid * a, Asteroid * b) {
 			v1y = -v1y;
 		}
 	}
-
-// TODO: check for math errors
-//	if(double.IsNaN(v1x) || double.IsNaN(v1y) || double.IsNaN(v2x) || double.IsNaN(v2y)) { return; }
 
 	// update the asteroids with their new velocities
 	a->setVelocity(v1x, v1y);
