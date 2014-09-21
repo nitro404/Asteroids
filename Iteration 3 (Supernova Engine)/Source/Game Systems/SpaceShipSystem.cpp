@@ -62,13 +62,13 @@ bool SpaceShipSystem::init(SpriteSheetCollection * spriteSheets, SpriteAnimation
 	QString spriteName;
 	QString animationName;
 
-	Sprite * sprite = NULL;
+	const Sprite * sprite = NULL;
 	const SpriteAnimation * animation = NULL;
 
 	Vector2 spaceShipPosition = Vector2::Zero;
 	float spaceShipRotation = 0.0f;
 
-	SpriteSheet * spaceShipSpriteSheet = spriteSheets->getSpriteSheet("SpaceShip");
+	const SpriteSheet * spaceShipSpriteSheet = spriteSheets->getSpriteSheet("SpaceShip");
 	if(spaceShipSpriteSheet == NULL) { return false; }
 
 	for(int i=0;i<SpaceShipColours::NumberOfColours;i++) {
