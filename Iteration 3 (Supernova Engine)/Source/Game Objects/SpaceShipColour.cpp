@@ -1,6 +1,6 @@
 #include "Game Objects/SpaceShipColour.h"
 
-const Colour SpaceShipColours::colours[] = { Colour::RED, Colour::BLUE, Colour::GREEN, Colour::YELLOW };
+const Colour SpaceShipColours::colours[] = { Colour::Red, Colour::Blue, Colour::Lime, Colour::Yellow };
 const char * SpaceShipColours::colourStrings[] = { "Red", "Blue", "Green", "Yellow" };
 const SpaceShipColours::SpaceShipColour SpaceShipColours::defaultColour = SpaceShipColours::Red;
 
@@ -41,13 +41,13 @@ const char * SpaceShipColours::toString(const Colour & colour) {
 }
 
 Colour SpaceShipColours::getColour(SpaceShipColour colour) {
-	if(!isValid(colour)) { return Colour::WHITE; }
+	if(!isValid(colour)) { return Colour::White; }
 
 	return colours[static_cast<int>(colour)];
 }
 
 Colour SpaceShipColours::getColour(int colour) {
-	if(!isValid(colour)) { return Colour::WHITE; }
+	if(!isValid(colour)) { return Colour::White; }
 
 	return colours[colour];
 }
@@ -64,7 +64,7 @@ SpaceShipColours::SpaceShipColour SpaceShipColours::getColour(const Colour & col
 Colour SpaceShipColours::getColour(const char * data) {
 	SpaceShipColour colour = parseFrom(data);
 
-	if(!isValid(colour)) { return Colour::WHITE; }
+	if(!isValid(colour)) { return Colour::White; }
 
 	return colours[colour];
 }
@@ -72,7 +72,7 @@ Colour SpaceShipColours::getColour(const char * data) {
 Colour SpaceShipColours::getColour(const QString & data) {
 	SpaceShipColour colour = parseFrom(data);
 
-	if(!isValid(colour)) { return Colour::WHITE; }
+	if(!isValid(colour)) { return Colour::White; }
 
 	return colours[colour];
 }
