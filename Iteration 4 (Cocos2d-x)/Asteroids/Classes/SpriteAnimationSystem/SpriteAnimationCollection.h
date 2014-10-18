@@ -2,6 +2,7 @@
 #define SPRITE_ANIMATION_COLLECTION_H
 
 #include "Utilities/Utilities.h"
+#include "IO/FileReader.h"
 #include "SpriteAnimationSystem/SpriteAnimation.h"
 
 class SpriteAnimationCollection {
@@ -29,7 +30,8 @@ public:
 	void clearAnimations();
 
 	static SpriteAnimationCollection * readFrom(const char * spriteAnimationDefinitionFileName);
-	static SpriteAnimationCollection * readFrom(FILE * input);
+	static SpriteAnimationCollection * readFrom(const std::string & spriteAnimationDefinitionFileName);
+	static SpriteAnimationCollection * readFrom(FileReader & input);
 
 	bool operator == (const SpriteAnimationCollection & s) const;
 	bool operator != (const SpriteAnimationCollection & s) const;

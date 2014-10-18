@@ -2,6 +2,7 @@
 #define SPRITE_ANIMATION_H
 
 #include "Utilities/Utilities.h"
+#include "IO/FileReader.h"
 #include "SpriteAnimationSystem/SpriteAnimationType.h"
 
 class SpriteAnimation {
@@ -39,7 +40,7 @@ public:
 	bool addSprite(SpriteFrame * sprite);
 	bool addSprites(const std::vector<SpriteFrame *> & sprites);
 
-	static SpriteAnimation * readFrom(FILE * input);
+	static SpriteAnimation * readFrom(FileReader & input);
 
 	bool operator == (const SpriteAnimation & s) const;
 	bool operator != (const SpriteAnimation & s) const;

@@ -12,8 +12,12 @@ bool Asteroids::init() {
 
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Asteroids.plist", "Asteroids.png");
 
+	m_animations = NULL;
 	m_animations = SpriteAnimationCollection::readFrom("Animations.ini");
-	if(m_animations == NULL) { return false; }
+	if(m_animations == NULL) {
+		MessageBox("Failed to load animation definition file!", "Init Failed");
+		return false;
+	}
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Size windowSize = Director::getInstance()->getWinSize();

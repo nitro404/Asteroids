@@ -9,6 +9,8 @@ LOCAL_MODULE_FILENAME := libcocos2dcpp
 LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
 				   ../../Classes/Utilities/Utilities.cpp \
+				   ../../Classes/IO/FileReaderMode.cpp \
+				   ../../Classes/IO/FileReader.cpp \
 				   ../../Classes/Math/ExtendedMath.cpp \
 				   ../../Classes/SpriteAnimationSystem/SpriteAnimationType.cpp \
 				   ../../Classes/SpriteAnimationSystem/SpriteAnimation.cpp \

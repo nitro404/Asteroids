@@ -195,25 +195,38 @@ void SpriteAnimationCollection::clearAnimations() {
 	m_animations.clear();
 }
 
+SpriteAnimationCollection * SpriteAnimationCollection::readFrom(const std::string & spriteAnimationDefinitionFileName) {
+	if(spriteAnimationDefinitionFileName.empty()) { return NULL; }
+
+	return readFrom(spriteAnimationDefinitionFileName.data());
+}
+
 SpriteAnimationCollection * SpriteAnimationCollection::readFrom(const char * spriteAnimationDefinitionFileName) {
 	if(spriteAnimationDefinitionFileName == NULL || Utilities::stringLength(spriteAnimationDefinitionFileName) == 0) { return NULL; }
 	
 	SpriteAnimationCollection * newSpriteAnimationCollection = NULL;
 
-	FILE * input = fopen(spriteAnimationDefinitionFileName, "r");
-	if(input == NULL) { return NULL; }
+	FileReader input(spriteAnimationDefinitionFileName);
+	if(!input.open()) {
+		return NULL;
+	}
 	
 	newSpriteAnimationCollection = readFrom(input);
-		
-	fclose(input);
+
+	input.close();
 	
 	return newSpriteAnimationCollection;
 }
 
-SpriteAnimationCollection * SpriteAnimationCollection::readFrom(FILE * input) {
-	if(input == NULL) { return NULL; }
+SpriteAnimationCollection * SpriteAnimationCollection::readFrom(FileReader & input) {
+	bool opened = false;
+	if(!input.isOpen()) {
+		if(!input.open()) {
+			return NULL;
+		}
+		opened = true;
+	}
 
-	char buffer[256];
 	std::string line;
 	const char * data = NULL;
 	bool valid = false;
@@ -223,11 +236,9 @@ SpriteAnimationCollection * SpriteAnimationCollection::readFrom(FILE * input) {
 	bool headerMatched = false;
 	
 	while(true) {
-		fgets(buffer, 256, input);
+		if(input.endOfFile()) { return NULL; }
 
-		if(feof(input)) { return NULL; }
-
-		line = Utilities::trimString(buffer);
+		line = Utilities::trimString(input.readLine());
 		if(line.length() == 0) { continue; }
 		
 		std::string headerData[2];
@@ -269,6 +280,10 @@ SpriteAnimationCollection * SpriteAnimationCollection::readFrom(FILE * input) {
 		if(newSpriteAnimation == NULL) { break; }
 		
 		newSpriteAnimationCollection->addAnimation(newSpriteAnimation);
+	}
+
+	if(opened) {
+		input.close();
 	}
 	
 	return newSpriteAnimationCollection;

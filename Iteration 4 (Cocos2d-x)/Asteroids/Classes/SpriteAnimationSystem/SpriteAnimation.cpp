@@ -127,8 +127,6 @@ bool SpriteAnimation::setType(SpriteAnimationTypes::SpriteAnimationType type) {
 
 	m_type = type;
 
-//	update(0);
-
 	return true;
 }
 
@@ -136,8 +134,6 @@ bool SpriteAnimation::setType(int type) {
 	if(!SpriteAnimationTypes::isValid(type)) { return false; }
 
 	m_type = static_cast<SpriteAnimationTypes::SpriteAnimationType>(type);
-
-//	update(0);
 
 	return true;
 }
@@ -150,8 +146,6 @@ bool SpriteAnimation::setType(const char * typeName) {
 
 	m_type = type;
 
-//	update(0);
-
 	return true;
 }
 
@@ -163,8 +157,6 @@ bool SpriteAnimation::setType(const std::string & typeName) {
 
 	m_type = type;
 
-//	update(0);
-
 	return true;
 }
 
@@ -173,8 +165,6 @@ bool SpriteAnimation::setDuration(float duration) {
 
 	m_duration = duration;
 	m_animation->setDelayPerUnit(m_duration / static_cast<float>(m_sprites.size()));
-
-//	update(0);
 
 	return true;
 }
@@ -221,8 +211,6 @@ bool SpriteAnimation::addSprite(SpriteFrame * sprite) {
 
 	m_animation->setDelayPerUnit(m_duration / static_cast<float>(m_sprites.size()));
 
-//	update(0);
-
 	return true;
 }
 
@@ -236,10 +224,9 @@ bool SpriteAnimation::addSprites(const std::vector<SpriteFrame *> & sprites) {
 	return addedSprite;
 }
 
-SpriteAnimation * SpriteAnimation::readFrom(FILE * input) {
-	if(input == NULL) { return NULL; }
+SpriteAnimation * SpriteAnimation::readFrom(FileReader & input) {
+	if(!input.isOpen()) { return NULL; }
 
-	char buffer[256];
 	std::string line;
 	std::string id, value;
 	std::string animationName, spriteName, spriteSheetName, spriteFileName, fileName;
@@ -254,11 +241,9 @@ SpriteAnimation * SpriteAnimation::readFrom(FILE * input) {
 	std::vector<SpriteFrame *> animationSprites;
 
 	while(true) {
-		fgets(buffer, 256, input);
+		if(input.endOfFile()) { return NULL; }
 
-		if(feof(input)) { return NULL; }
-
-		line = Utilities::trimString(buffer);
+		line = Utilities::trimString(input.readLine());
 		if(line.length() == 0) { continue; }
 
 		id = Utilities::getVariableID(line);
@@ -314,11 +299,9 @@ SpriteAnimation * SpriteAnimation::readFrom(FILE * input) {
 				int numberOfSprites = 0;
 
 				while(true) {
-					fgets(buffer, 256, input);
+					if(input.endOfFile()) { return NULL; }
 
-					if(feof(input)) { return NULL; }
-
-					line = Utilities::trimString(buffer);
+					line = Utilities::trimString(input.readLine());
 					if(line.length() == 0) { continue; }
 					
 					id = Utilities::getVariableID(line);

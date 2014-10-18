@@ -71,32 +71,33 @@ const char * Utilities::toString(double value) {
 }
 
 #if USE_STL
-std::string Utilities::trimString(const std::string & data) {
+std::string Utilities::trimString(const std::string & data, bool trimWhiteSpace, bool trimNewLines) {
 	if(data.empty()) { return std::string(); }
-	if(data.length() == 1 && (data[0] == ' ' || data[0] == '\t' || data[0] == '\n' || data[0] == '\r')) { return std::string(); }
+	if(trimWhiteSpace == false && trimNewLines == false) { return data; }
+	if(data.length() == 1 && ((trimWhiteSpace && (data[0] == ' ' || data[0] == '\t')) || (trimNewLines && (data[0] == '\n' || data[0] == '\r')))) { return std::string(); }
 
 	int start = 0;
-	int end = data.length();
+	int end = 0;
 
 	for(unsigned int i=0;i<data.length();i++) {
-		if(data[i] != ' ' && data[i] != '\t' && data[i] != '\n' && data[i] != '\r') {
+		start = i;
+
+		if(!((trimWhiteSpace && (data[i] == ' ' || data[i] == '\t')) || (trimNewLines && (data[i] == '\n' || data[i] == '\r')))) {
 			break;
 		}
-
-		start++;
 	}
 
-	for(unsigned int i=data.length() - 1;i>=0;i--) {
-		if(data[i] != ' ' && data[i] != '\t' && data[i] != '\n' && data[i] != '\r') {
+	for(unsigned int i=data.length()-1;i>=0;i--) {
+		end = i;
+
+		if(!((trimWhiteSpace && (data[i] == ' ' || data[i] == '\t')) || (trimNewLines && (data[i] == '\n' || data[i] == '\r')))) {
 			break;
 		}
-
-		end--;
 	}
 
 	if(start > end) { return std::string(); }
 
-	return data.substr(start, end - start);
+	return data.substr(start, end - start + 1);
 }
 #endif // USE_STL
 

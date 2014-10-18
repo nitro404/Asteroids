@@ -135,6 +135,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\Asteroids.cpp" />
+    <ClCompile Include="..\Classes\IO\FileReader.cpp" />
+    <ClCompile Include="..\Classes\IO\FileReaderMode.cpp" />
     <ClCompile Include="..\Classes\Math\ExtendedMath.cpp" />
     <ClCompile Include="..\Classes\SpriteAnimationSystem\SpriteAnimation.cpp" />
     <ClCompile Include="..\Classes\SpriteAnimationSystem\SpriteAnimationCollection.cpp" />
@@ -145,6 +147,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\Asteroids.h" />
+    <ClInclude Include="..\Classes\IO\FileReader.h" />
+    <ClInclude Include="..\Classes\IO\FileReaderMode.h" />
     <ClInclude Include="..\Classes\Math\ExtendedMath.h" />
     <ClInclude Include="..\Classes\SpriteAnimationSystem\SpriteAnimation.h" />
     <ClInclude Include="..\Classes\SpriteAnimationSystem\SpriteAnimationCollection.h" />

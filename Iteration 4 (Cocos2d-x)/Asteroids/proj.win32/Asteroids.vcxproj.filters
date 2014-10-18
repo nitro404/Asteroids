@@ -19,6 +19,9 @@
     <Filter Include="SpriteAnimationSystem">
       <UniqueIdentifier>{995cd1ab-d1ae-4ed7-bf95-66f2670705a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="IO">
+      <UniqueIdentifier>{429de849-2b37-4e91-94eb-6eb83b026572}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -45,6 +48,12 @@
     <ClCompile Include="..\Classes\SpriteAnimationSystem\SpriteAnimationType.cpp">
       <Filter>SpriteAnimationSystem</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\IO\FileReader.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\IO\FileReaderMode.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -70,6 +79,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SpriteAnimationSystem\SpriteAnimationType.h">
       <Filter>SpriteAnimationSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\IO\FileReader.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\IO\FileReaderMode.h">
+      <Filter>IO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

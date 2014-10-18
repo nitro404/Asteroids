@@ -2,6 +2,7 @@
 #define UTILITIES_H
 
 #define USE_STL 1
+#define COCOS2D_DEBUG 1
 
 #include <cocos2d.h>
 #include <cstdio>
@@ -25,7 +26,7 @@ namespace Utilities {
 	const char * toString(int value);
 	const char * toString(double value);
 #if USE_STL
-	std::string trimString(const std::string & data);
+	std::string trimString(const std::string & data, bool trimWhiteSpace = true, bool trimNewLines = true);
 #endif // USE_STL
 #if USE_STL
 	std::string substring(const std::string & data, int start, int end);
