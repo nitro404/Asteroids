@@ -1,0 +1,1 @@
+cocos run -s Asteroids -p win32
