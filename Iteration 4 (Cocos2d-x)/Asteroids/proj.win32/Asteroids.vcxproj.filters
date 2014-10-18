@@ -4,33 +4,72 @@
     <Filter Include="win32">
       <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes">
-      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
-    </Filter>
     <Filter Include="resource">
       <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{c2ac823f-2510-497e-a6c4-97c97bda4865}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{24a07d1e-4c0e-40e6-852f-3750fc61375d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpriteAnimationSystem">
+      <UniqueIdentifier>{995cd1ab-d1ae-4ed7-bf95-66f2670705a4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>Classes</Filter>
+    <ClCompile Include="..\Classes\Asteroids.cpp">
+      <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
-      <Filter>Classes</Filter>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Utilities\Utilities.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Math\ExtendedMath.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SpriteAnimationSystem\SpriteAnimation.cpp">
+      <Filter>SpriteAnimationSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SpriteAnimationSystem\SpriteAnimationCollection.cpp">
+      <Filter>SpriteAnimationSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SpriteAnimationSystem\SpriteAnimationType.cpp">
+      <Filter>SpriteAnimationSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
       <Filter>win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>Classes</Filter>
+    <ClInclude Include="..\Classes\Asteroids.h">
+      <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\HelloWorldScene.h">
-      <Filter>Classes</Filter>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utilities\Utilities.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Math\ExtendedMath.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SpriteAnimationSystem\SpriteAnimation.h">
+      <Filter>SpriteAnimationSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SpriteAnimationSystem\SpriteAnimationCollection.h">
+      <Filter>SpriteAnimationSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SpriteAnimationSystem\SpriteAnimationType.h">
+      <Filter>SpriteAnimationSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

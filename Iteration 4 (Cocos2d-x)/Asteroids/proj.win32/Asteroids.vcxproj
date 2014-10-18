@@ -134,12 +134,22 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\Asteroids.cpp" />
+    <ClCompile Include="..\Classes\Math\ExtendedMath.cpp" />
+    <ClCompile Include="..\Classes\SpriteAnimationSystem\SpriteAnimation.cpp" />
+    <ClCompile Include="..\Classes\SpriteAnimationSystem\SpriteAnimationCollection.cpp" />
+    <ClCompile Include="..\Classes\SpriteAnimationSystem\SpriteAnimationType.cpp" />
+    <ClCompile Include="..\Classes\Utilities\Utilities.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
-    <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\Asteroids.h" />
+    <ClInclude Include="..\Classes\Math\ExtendedMath.h" />
+    <ClInclude Include="..\Classes\SpriteAnimationSystem\SpriteAnimation.h" />
+    <ClInclude Include="..\Classes\SpriteAnimationSystem\SpriteAnimationCollection.h" />
+    <ClInclude Include="..\Classes\SpriteAnimationSystem\SpriteAnimationType.h" />
+    <ClInclude Include="..\Classes\Utilities\Utilities.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
