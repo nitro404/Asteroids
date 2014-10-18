@@ -1,7 +1,13 @@
 **/Debug
 **/Release/
+**/Debug.win32/
+**/Release.win32/
 **/obj/
 **/bin/
+**/gen/
+**/publish/
+**/libs/
+**/assets/
 **/old/
 **/Backup/
 **/Misc/
@@ -24,4 +30,5 @@
 **/Originals/
 *.html
 *.htm
+local.properties
 TODO.txt
