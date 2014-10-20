@@ -20,9 +20,17 @@ bool Asteroids::init() {
 
 	m_projectileSystem = new ProjectileSystem(this);
 	m_spaceShipSystem = new SpaceShipSystem(this);
+	m_asteroidSystem = new AsteroidSystem(this);
+	m_explosionSystem = new ExplosionSystem(this);
+	m_scoreSystem = new ScoreSystem(this);
+	m_collisionSystem = new CollisionSystem(this);
 
 	m_projectileSystem->init(m_animations);
 	m_spaceShipSystem->init(m_animations, m_projectileSystem);
+	m_asteroidSystem->init(m_spaceShipSystem);
+	m_explosionSystem->init(m_animations);
+	m_scoreSystem->init(m_spaceShipSystem);
+	m_collisionSystem->init(m_projectileSystem, m_spaceShipSystem, m_asteroidSystem, m_explosionSystem, m_scoreSystem);
 
 	m_spaceShipSystem->start(4);
 
@@ -49,8 +57,15 @@ void Asteroids::menuCloseCallback(Ref * pSender) {
     return;
 #endif
 
+	if(m_collisionSystem != NULL) { delete m_collisionSystem; }
+	if(m_scoreSystem != NULL) { delete m_scoreSystem; }
+	if(m_explosionSystem != NULL) { delete m_explosionSystem; }
+	if(m_asteroidSystem != NULL) { delete m_asteroidSystem; }
+	if(m_spaceShipSystem != NULL) { delete m_spaceShipSystem; }
+	if(m_projectileSystem != NULL) { delete m_projectileSystem; }
+	
 	if(m_animations != NULL) { delete m_animations; }
-
+	
     Director::getInstance()->end();
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)

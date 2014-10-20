@@ -63,7 +63,7 @@ SpriteAnimation::SpriteAnimation(const SpriteAnimation & s)
 }
 
 SpriteAnimation & SpriteAnimation::operator = (const SpriteAnimation & s) {
-	if(m_action != NULL) { m_action->stop(); }
+	if(m_action != NULL) { stop(); }
 	m_sprites.clear();
 
 	m_name = s.m_name;
@@ -186,65 +186,6 @@ bool SpriteAnimation::setDuration(float duration) {
 	return true;
 }
 
-bool SpriteAnimation::play() {
-	if(m_playing) { return true; }
-	if(m_sprite == NULL) { return false; }
-
-	m_animation = Animation::create();
-	for(unsigned int i=0;i<m_sprites.size();i++) {
-		m_animation->addSpriteFrame(m_sprites[i]);
-	}
-	m_animation->setRestoreOriginalFrame(m_type == SpriteAnimationTypes::Loop);
-	m_animation->setDelayPerUnit(m_duration / static_cast<float>(m_sprites.size()));
-
-	if(m_type == SpriteAnimationTypes::Loop) {
-		m_action = RepeatForever::create(Animate::create(m_animation));
-	}
-	else if(m_type == SpriteAnimationTypes::Single) {
-		m_action = Repeat::create(Animate::create(m_animation), 1);
-	}
-	else {
-		return false;
-	}
-
-	m_sprite->runAction(m_action);
-
-	m_playing = true;
-
-	return true;
-}
-
-bool SpriteAnimation::isPlaying() const {
-	return m_playing;
-}
-
-bool SpriteAnimation::isFinished() const {
-	if(!m_playing || m_action == NULL) { return true; }
-	if(m_type == SpriteAnimationTypes::Loop) { return false; }
-
-	return m_action->isDone();
-}
-
-void SpriteAnimation::stop() {
-	if(!m_playing) { return; }
-
-	m_action->stop();
-	if(m_sprite != NULL) { m_sprite->stopAction(m_action); }
-	m_animation = NULL;
-	m_action = NULL;
-	m_playing = false;
-}
-
-void SpriteAnimation::update(float timeElapsed) {
-	if(m_playing && isFinished()) {
-		m_action->stop();
-		if(m_sprite != NULL) { m_sprite->stopAction(m_action); }
-		m_animation = NULL;
-		m_action = NULL;
-		m_playing = false;
-	}
-}
-
 int SpriteAnimation::numberOfSpriteFrames() const {
 	return static_cast<int>(m_sprites.size());
 }
@@ -294,6 +235,63 @@ bool SpriteAnimation::addSpriteFrames(const std::vector<SpriteFrame *> & sprites
 	}
 
 	return addedSprite;
+}
+
+bool SpriteAnimation::play() {
+	if(m_playing) { return true; }
+	if(m_sprite == NULL) { return false; }
+
+	m_animation = Animation::create();
+	for(unsigned int i=0;i<m_sprites.size();i++) {
+		m_animation->addSpriteFrame(m_sprites[i]);
+	}
+	m_animation->setRestoreOriginalFrame(m_type == SpriteAnimationTypes::Loop);
+	m_animation->setDelayPerUnit(m_duration / static_cast<float>(m_sprites.size()));
+
+	if(m_type == SpriteAnimationTypes::Loop) {
+		m_action = RepeatForever::create(Animate::create(m_animation));
+	}
+	else if(m_type == SpriteAnimationTypes::Single) {
+		m_action = Repeat::create(Animate::create(m_animation), 1);
+	}
+	else {
+		return false;
+	}
+
+	m_sprite->runAction(m_action);
+
+	m_playing = true;
+
+	return true;
+}
+
+bool SpriteAnimation::isPlaying() const {
+	return m_playing;
+}
+
+bool SpriteAnimation::isFinished() const {
+	if(!m_playing || m_action == NULL) { return true; }
+	if(m_type == SpriteAnimationTypes::Loop) { return false; }
+	
+	return m_action->isDone();
+}
+
+void SpriteAnimation::stop() {
+	if(!m_playing) { return; }
+
+	if(m_sprite != NULL) { m_sprite->stopAction(m_action); }
+	m_animation = NULL;
+	m_action = NULL;
+	m_playing = false;
+}
+
+void SpriteAnimation::update(float timeElapsed) {
+	if(m_playing && isFinished() || m_sprite == NULL) {
+		if(m_sprite != NULL) { m_sprite->stopAction(m_action); }
+		m_animation = NULL;
+		m_action = NULL;
+		m_playing = false;
+	}
 }
 
 SpriteAnimation * SpriteAnimation::readFrom(FileReader & input) {

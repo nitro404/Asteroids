@@ -20,12 +20,20 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 				   ../../Classes/Entity/Entity2D.cpp \
 				   ../../Classes/Entity/AnimatedEntity2D.cpp \
 				   ../../Classes/GameObjects/RotationDirection.cpp \
+				   ../../Classes/GameObjects/AsteroidType.cpp \
+				   ../../Classes/GameObjects/Asteroid.cpp \
+				   ../../Classes/GameObjects/Explosion.cpp \
 				   ../../Classes/GameObjects/Projectile.cpp \
 				   ../../Classes/GameObjects/SpaceShipMovementDirection.cpp \
 				   ../../Classes/GameObjects/SpaceShipColour.cpp \
 				   ../../Classes/GameObjects/SpaceShip.cpp \
+				   ../../Classes/GameObjects/ScoreType.cpp \
 				   ../../Classes/GameSystems/ProjectileSystem.cpp \
 				   ../../Classes/GameSystems/SpaceShipSystem.cpp \
+				   ../../Classes/GameSystems/AsteroidSystem.cpp \
+				   ../../Classes/GameSystems/ExplosionSystem.cpp \
+				   ../../Classes/GameSystems/ScoreSystem.cpp \
+				   ../../Classes/GameSystems/CollisionSystem.cpp \
                    ../../Classes/Asteroids.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes

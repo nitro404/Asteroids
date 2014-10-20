@@ -70,7 +70,7 @@ ProjectileSystem::~ProjectileSystem() {
 }
 
 int ProjectileSystem::numberOfProjectiles() const {
-	return m_projectiles.size();
+	return static_cast<int>(m_projectiles.size());
 }
 
 bool ProjectileSystem::hasProjectile(const Projectile * projectile) const {
@@ -150,10 +150,12 @@ void ProjectileSystem::clearProjectiles() {
 }
 
 Layer * ProjectileSystem::getParent() const {
-	return m_parent;
+	return Entity::getParent();
 }
 
 void ProjectileSystem::setParent(Layer * parent) {
+	if(m_parent == parent) { return; }
+
 	if(m_parent != NULL) { m_parent->removeComponent(projectileSystemClassName); }
 
 	Entity::setParent(parent);

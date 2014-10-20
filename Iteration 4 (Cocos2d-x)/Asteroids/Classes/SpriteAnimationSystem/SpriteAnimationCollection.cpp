@@ -33,7 +33,7 @@ SpriteAnimationCollection::~SpriteAnimationCollection() {
 }
 
 int SpriteAnimationCollection::numberOfAnimations() const {
-	return m_animations.size();
+	return static_cast<int>(m_animations.size());
 }
 
 bool SpriteAnimationCollection::hasAnimation(const SpriteAnimation & animation) const {

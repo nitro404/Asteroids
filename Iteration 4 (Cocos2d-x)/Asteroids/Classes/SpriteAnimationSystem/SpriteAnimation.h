@@ -33,18 +33,18 @@ public:
 	bool setType(const std::string & typeName);
 	bool setDuration(float duration);
 
-	virtual bool play();
-	virtual bool isPlaying() const;
-	virtual bool isFinished() const;
-	virtual void stop();
-	virtual void update(float timeElapsed);
-
 	int numberOfSpriteFrames() const;
 	bool hasSpriteFrame(const SpriteFrame * sprite) const;
 	int indexOfSpriteFrame(const SpriteFrame * sprite) const;
 	SpriteFrame * getSpriteFrame(int index) const;
 	bool addSpriteFrame(SpriteFrame * sprite);
 	bool addSpriteFrames(const std::vector<SpriteFrame *> & sprites);
+	
+	virtual bool play();
+	virtual bool isPlaying() const;
+	virtual bool isFinished() const;
+	virtual void stop();
+	virtual void update(float timeElapsed);
 
 	static SpriteAnimation * readFrom(FileReader & input);
 

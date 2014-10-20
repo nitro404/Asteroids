@@ -66,10 +66,12 @@ const SpaceShip * SpaceShipSystem::getSpaceShip(int index) const {
 }
 
 Layer * SpaceShipSystem::getParent() const {
-	return m_parent;
+	return Entity::getParent();
 }
 
 void SpaceShipSystem::setParent(Layer * parent) {
+	if(m_parent == parent) { return; }
+
 	if(m_parent != NULL) { m_parent->removeComponent(spaceShipSystemClassName); }
 
 	Entity::setParent(parent);

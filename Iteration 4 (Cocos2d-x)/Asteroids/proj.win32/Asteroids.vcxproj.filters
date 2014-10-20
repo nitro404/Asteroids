@@ -96,6 +96,30 @@
     <ClCompile Include="..\Classes\GameSystems\SpaceShipSystem.cpp">
       <Filter>GameSystems</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameObjects\Asteroid.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameObjects\AsteroidType.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameObjects\Explosion.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameSystems\AsteroidSystem.cpp">
+      <Filter>GameSystems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameSystems\CollisionSystem.cpp">
+      <Filter>GameSystems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameSystems\ExplosionSystem.cpp">
+      <Filter>GameSystems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameSystems\ScoreSystem.cpp">
+      <Filter>GameSystems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameObjects\ScoreType.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -160,6 +184,30 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameSystems\SpaceShipSystem.h">
       <Filter>GameSystems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameObjects\Asteroid.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameObjects\AsteroidType.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameObjects\Explosion.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameSystems\AsteroidSystem.h">
+      <Filter>GameSystems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameSystems\CollisionSystem.h">
+      <Filter>GameSystems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameSystems\ExplosionSystem.h">
+      <Filter>GameSystems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameSystems\ScoreSystem.h">
+      <Filter>GameSystems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameObjects\ScoreType.h">
+      <Filter>GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
