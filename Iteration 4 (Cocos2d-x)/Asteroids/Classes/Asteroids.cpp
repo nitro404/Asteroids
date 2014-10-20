@@ -12,27 +12,35 @@ bool Asteroids::init() {
 
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Asteroids.plist", "Asteroids.png");
 
-	m_animations = NULL;
 	m_animations = SpriteAnimationCollection::readFrom("Animations.ini");
 	if(m_animations == NULL) {
 		MessageBox("Failed to load animation definition file!", "Init Failed");
 		return false;
 	}
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Size windowSize = Director::getInstance()->getWinSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	m_projectileSystem = new ProjectileSystem(this);
+	m_spaceShipSystem = new SpaceShipSystem(this);
 
-	const SpriteAnimation * explosionSpriteAnimation = m_animations->getAnimation("Explosion");
-	Sprite * explosionSprite = explosionSpriteAnimation->getSprite();
+	m_projectileSystem->init(m_animations);
+	m_spaceShipSystem->init(m_animations, m_projectileSystem);
 
-	explosionSprite->setPosition(windowSize.width / 2, windowSize.height / 2);
+	m_spaceShipSystem->start(4);
 
-	Action * explosionAction = RepeatForever::create(Animate::create(explosionSpriteAnimation->getAnimation()));
-	explosionSprite->runAction(explosionAction);
-	addChild(explosionSprite);
+	schedule(schedule_selector(Asteroids::update)); 
 
 	return true;
+}
+
+void Asteroids::onEnter() {
+	Layer::onEnter();
+}
+
+void Asteroids::onExit() {
+	Layer::onExit();
+}
+
+bool Asteroids::onTouchBegan(Touch * touch, Event * event) {
+	return Layer::onTouchBegan(touch, event);
 }
 
 void Asteroids::menuCloseCallback(Ref * pSender) {

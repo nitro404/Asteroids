@@ -126,11 +126,11 @@ const SpriteAnimation * SpriteAnimationCollection::getAnimation(const std::strin
 	return NULL;
 }
 
-bool SpriteAnimationCollection::addAnimation(SpriteAnimation * animation) {
+bool SpriteAnimationCollection::addAnimation(const SpriteAnimation * animation) {
 	if(animation == NULL ||
 	   !SpriteAnimationTypes::isValid(animation->getType()) ||
 	   !SpriteAnimationTypes::isValid(animation->getType()) ||
-	   animation->numberOfSprites() == 0) {
+	   animation->numberOfSpriteFrames() == 0) {
 		return false;
 	}
 	

@@ -11,6 +11,8 @@ public:
 	SpriteAnimation(const char * name, const char * spriteFileName, float duration, SpriteAnimationTypes::SpriteAnimationType type, const std::vector<SpriteFrame *> & sprites);
 	SpriteAnimation(const std::string & name, const std::string & spriteFileName, float duration, SpriteAnimationTypes::SpriteAnimationType type);
 	SpriteAnimation(const std::string & name, const std::string & spriteFileName, float duration, SpriteAnimationTypes::SpriteAnimationType type, const std::vector<SpriteFrame *> & sprites);
+	SpriteAnimation(const SpriteAnimation & s);
+	SpriteAnimation & operator = (const SpriteAnimation & s);
 	virtual ~SpriteAnimation();
 
 	const char * getName() const;
@@ -18,8 +20,6 @@ public:
 	SpriteAnimationTypes::SpriteAnimationType getType() const;
 	const char * getTypeName() const;
 	float getDuration() const;
-	float getTimeElapsed() const;
-	bool isFinished() const;
 	Animation * getAnimation() const;
 	Sprite * getSprite() const;
 
@@ -33,12 +33,18 @@ public:
 	bool setType(const std::string & typeName);
 	bool setDuration(float duration);
 
-	int numberOfSprites() const;
-	bool hasSprite(const SpriteFrame * sprite) const;
-	int indexOfSprite(const SpriteFrame * sprite) const;
-	const SpriteFrame * getSprite(int index) const;
-	bool addSprite(SpriteFrame * sprite);
-	bool addSprites(const std::vector<SpriteFrame *> & sprites);
+	virtual bool play();
+	virtual bool isPlaying() const;
+	virtual bool isFinished() const;
+	virtual void stop();
+	virtual void update(float timeElapsed);
+
+	int numberOfSpriteFrames() const;
+	bool hasSpriteFrame(const SpriteFrame * sprite) const;
+	int indexOfSpriteFrame(const SpriteFrame * sprite) const;
+	SpriteFrame * getSpriteFrame(int index) const;
+	bool addSpriteFrame(SpriteFrame * sprite);
+	bool addSpriteFrames(const std::vector<SpriteFrame *> & sprites);
 
 	static SpriteAnimation * readFrom(FileReader & input);
 
@@ -54,11 +60,11 @@ protected:
 	std::vector<SpriteFrame *> m_sprites;
 	SpriteAnimationTypes::SpriteAnimationType m_type;
 	float m_duration;
-	float m_timeElapsed;
-	int m_frameIndex;
-	bool m_finished;
 	Animation * m_animation;
 	Sprite * m_sprite;
+	Action * m_action;
+	bool m_playing;
+	Layer * m_parent;
 };
 
 #endif // SPRITE_ANIMATION_H

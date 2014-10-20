@@ -22,6 +22,15 @@
     <Filter Include="IO">
       <UniqueIdentifier>{429de849-2b37-4e91-94eb-6eb83b026572}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{efbb459e-9265-48d9-a1f6-6167739e9901}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity">
+      <UniqueIdentifier>{dfd4d516-2bfa-4180-8919-f95166a8393c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameSystems">
+      <UniqueIdentifier>{ea5ab1ca-f2f4-4bca-873a-eb0ae4d91dad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -54,6 +63,39 @@
     <ClCompile Include="..\Classes\IO\FileReaderMode.cpp">
       <Filter>IO</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameObjects\Projectile.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameObjects\RotationDirection.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameObjects\SpaceShip.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameObjects\SpaceShipColour.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameObjects\SpaceShipMovementDirection.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Utilities\Colour.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Entity\AnimatedEntity2D.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Entity\Entity.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Entity\Entity2D.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameSystems\ProjectileSystem.cpp">
+      <Filter>GameSystems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameSystems\SpaceShipSystem.cpp">
+      <Filter>GameSystems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -85,6 +127,39 @@
     </ClInclude>
     <ClInclude Include="..\Classes\IO\FileReaderMode.h">
       <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameObjects\Projectile.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameObjects\RotationDirection.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameObjects\SpaceShip.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameObjects\SpaceShipColour.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameObjects\SpaceShipMovementDirection.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utilities\Colour.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Entity\AnimatedEntity2D.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Entity\Entity.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Entity\Entity2D.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameSystems\ProjectileSystem.h">
+      <Filter>GameSystems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameSystems\SpaceShipSystem.h">
+      <Filter>GameSystems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

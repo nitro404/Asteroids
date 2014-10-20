@@ -8,7 +8,6 @@ namespace SpriteAnimationTypes {
 		Invalid = -1,
 		Single,
 		Loop,
-		Custom,
 		NumberOfSpriteAnimationTypes
 	};
 	

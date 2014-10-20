@@ -1,63 +1,89 @@
 #include "SpriteAnimationSystem/SpriteAnimation.h"
 
-const float SpriteAnimation::minimumDuration = 1.0f / 30.0f;;
+const float SpriteAnimation::minimumDuration = 1.0f / 30.0f;
 
 SpriteAnimation::SpriteAnimation(const char * name, const char * spriteFileName, float duration, SpriteAnimationTypes::SpriteAnimationType type)
-	: m_type(SpriteAnimationTypes::isValid(type) ? type : SpriteAnimationTypes::defaultSpriteAnimationType)
+	: m_name(Utilities::trimString(std::string(name)))
+	, m_spriteFileName(Utilities::trimString(std::string(spriteFileName)))
+	, m_type(SpriteAnimationTypes::isValid(type) ? type : SpriteAnimationTypes::defaultSpriteAnimationType)
 	, m_duration(duration < minimumDuration ? minimumDuration : duration)
-	, m_timeElapsed(0.0f)
-	, m_frameIndex(0)
-	, m_finished(false)
+	, m_sprite(NULL)
 	, m_animation(NULL)
-	, m_sprite(NULL) {
-	m_animation = Animation::create();
-	setName(name);
-	setSpriteFileName(spriteFileName);
+	, m_action(NULL)
+	, m_playing(false) {
+	
 }
 
 SpriteAnimation::SpriteAnimation(const char * name, const char * spriteFileName, float duration, SpriteAnimationTypes::SpriteAnimationType type, const std::vector<SpriteFrame *> & sprites)
-	: m_type(SpriteAnimationTypes::isValid(type) ? type : SpriteAnimationTypes::defaultSpriteAnimationType)
+	: m_name(Utilities::trimString(std::string(name)))
+	, m_spriteFileName(Utilities::trimString(std::string(spriteFileName)))
+	, m_type(SpriteAnimationTypes::isValid(type) ? type : SpriteAnimationTypes::defaultSpriteAnimationType)
 	, m_duration(duration < minimumDuration ? minimumDuration : duration)
-	, m_timeElapsed(0.0f)
-	, m_frameIndex(0)
-	, m_finished(false)
+	, m_sprite(NULL)
 	, m_animation(NULL)
-	, m_sprite(NULL) {
-	m_animation = Animation::create();
-	setName(name);
-	setSpriteFileName(spriteFileName);
-	addSprites(sprites);
+	, m_action(NULL)
+	, m_playing(false) {
+	addSpriteFrames(sprites);
 }
 
 SpriteAnimation::SpriteAnimation(const std::string & name, const std::string & spriteFileName, float duration, SpriteAnimationTypes::SpriteAnimationType type)
-	: m_type(SpriteAnimationTypes::isValid(type) ? type : SpriteAnimationTypes::defaultSpriteAnimationType)
+	: m_name(Utilities::trimString(name))
+	, m_spriteFileName(Utilities::trimString(spriteFileName))
+	, m_type(SpriteAnimationTypes::isValid(type) ? type : SpriteAnimationTypes::defaultSpriteAnimationType)
 	, m_duration(duration < minimumDuration ? minimumDuration : duration)
-	, m_timeElapsed(0.0f)
-	, m_frameIndex(0)
-	, m_finished(false)
+	, m_sprite(NULL)
 	, m_animation(NULL)
-	, m_sprite(NULL) {
-	m_animation = Animation::create();
-	setName(name);
-	setSpriteFileName(spriteFileName);
+	, m_action(NULL)
+	, m_playing(false) {
+
 }
 
 SpriteAnimation::SpriteAnimation(const std::string & name, const std::string & spriteFileName, float duration, SpriteAnimationTypes::SpriteAnimationType type, const std::vector<SpriteFrame *> & sprites)
-	: m_type(SpriteAnimationTypes::isValid(type) ? type : SpriteAnimationTypes::defaultSpriteAnimationType)
+	: m_name(Utilities::trimString(name))
+	, m_spriteFileName(Utilities::trimString(spriteFileName))
+	, m_type(SpriteAnimationTypes::isValid(type) ? type : SpriteAnimationTypes::defaultSpriteAnimationType)
 	, m_duration(duration < minimumDuration ? minimumDuration : duration)
-	, m_timeElapsed(0.0f)
-	, m_frameIndex(0)
-	, m_finished(false)
+	, m_sprite(NULL)
 	, m_animation(NULL)
-	, m_sprite(NULL) {
-	m_animation = Animation::create();
-	setName(name);
-	setSpriteFileName(spriteFileName);
-	addSprites(sprites);
+	, m_action(NULL)
+	, m_playing(false) {
+	addSpriteFrames(sprites);
+}
+
+SpriteAnimation::SpriteAnimation(const SpriteAnimation & s)
+	: m_name(s.m_name)
+	, m_spriteFileName(s.m_spriteFileName)
+	, m_type(s.m_type)
+	, m_duration(s.m_duration)
+	, m_sprite(NULL)
+	, m_animation(NULL)
+	, m_action(NULL)
+	, m_playing(false) {
+	addSpriteFrames(s.m_sprites);
+}
+
+SpriteAnimation & SpriteAnimation::operator = (const SpriteAnimation & s) {
+	if(m_action != NULL) { m_action->stop(); }
+	m_sprites.clear();
+
+	m_name = s.m_name;
+	m_spriteFileName = s.m_spriteFileName;
+	m_type = s.m_type;
+	m_duration = s.m_duration;
+	m_sprite = NULL;
+	m_animation = NULL;
+	m_action = NULL;
+	m_playing = false;
+
+	addSpriteFrames(s.m_sprites);
+
+	return *this;
 }
 
 SpriteAnimation::~SpriteAnimation() {
-
+	if(m_playing) {
+		stop();
+	}
 }
 
 const char * SpriteAnimation::getName() const {
@@ -78,14 +104,6 @@ const char * SpriteAnimation::getTypeName() const {
 
 float SpriteAnimation::getDuration() const {
 	return m_duration;
-}
-
-float SpriteAnimation::getTimeElapsed() const {
-	return m_timeElapsed;
-}
-
-bool SpriteAnimation::isFinished() const {
-	return m_finished;
 }
 
 Animation * SpriteAnimation::getAnimation() const {
@@ -164,16 +182,74 @@ bool SpriteAnimation::setDuration(float duration) {
 	if(duration < minimumDuration) { return false; }
 
 	m_duration = duration;
-	m_animation->setDelayPerUnit(m_duration / static_cast<float>(m_sprites.size()));
 
 	return true;
 }
 
-int SpriteAnimation::numberOfSprites() const {
+bool SpriteAnimation::play() {
+	if(m_playing) { return true; }
+	if(m_sprite == NULL) { return false; }
+
+	m_animation = Animation::create();
+	for(unsigned int i=0;i<m_sprites.size();i++) {
+		m_animation->addSpriteFrame(m_sprites[i]);
+	}
+	m_animation->setRestoreOriginalFrame(m_type == SpriteAnimationTypes::Loop);
+	m_animation->setDelayPerUnit(m_duration / static_cast<float>(m_sprites.size()));
+
+	if(m_type == SpriteAnimationTypes::Loop) {
+		m_action = RepeatForever::create(Animate::create(m_animation));
+	}
+	else if(m_type == SpriteAnimationTypes::Single) {
+		m_action = Repeat::create(Animate::create(m_animation), 1);
+	}
+	else {
+		return false;
+	}
+
+	m_sprite->runAction(m_action);
+
+	m_playing = true;
+
+	return true;
+}
+
+bool SpriteAnimation::isPlaying() const {
+	return m_playing;
+}
+
+bool SpriteAnimation::isFinished() const {
+	if(!m_playing || m_action == NULL) { return true; }
+	if(m_type == SpriteAnimationTypes::Loop) { return false; }
+
+	return m_action->isDone();
+}
+
+void SpriteAnimation::stop() {
+	if(!m_playing) { return; }
+
+	m_action->stop();
+	if(m_sprite != NULL) { m_sprite->stopAction(m_action); }
+	m_animation = NULL;
+	m_action = NULL;
+	m_playing = false;
+}
+
+void SpriteAnimation::update(float timeElapsed) {
+	if(m_playing && isFinished()) {
+		m_action->stop();
+		if(m_sprite != NULL) { m_sprite->stopAction(m_action); }
+		m_animation = NULL;
+		m_action = NULL;
+		m_playing = false;
+	}
+}
+
+int SpriteAnimation::numberOfSpriteFrames() const {
 	return static_cast<int>(m_sprites.size());
 }
 
-bool SpriteAnimation::hasSprite(const SpriteFrame * sprite) const {
+bool SpriteAnimation::hasSpriteFrame(const SpriteFrame * sprite) const {
 	for(unsigned int i=0;i<m_sprites.size();i++) {
 		if(m_sprites[i] == sprite) {
 			return true;
@@ -182,7 +258,7 @@ bool SpriteAnimation::hasSprite(const SpriteFrame * sprite) const {
 	return false;
 }
 
-int SpriteAnimation::indexOfSprite(const SpriteFrame * sprite) const {
+int SpriteAnimation::indexOfSpriteFrame(const SpriteFrame * sprite) const {
 	for(unsigned int i=0;i<m_sprites.size();i++) {
 		if(m_sprites[i] == sprite) {
 			return i;
@@ -191,34 +267,30 @@ int SpriteAnimation::indexOfSprite(const SpriteFrame * sprite) const {
 	return -1;
 }
 
-const SpriteFrame * SpriteAnimation::getSprite(int index) const {
+SpriteFrame * SpriteAnimation::getSpriteFrame(int index) const {
 	if(index < 0 || index >= static_cast<int>(m_sprites.size())) { return NULL; }
 
 	return m_sprites[index];
 }
 
-bool SpriteAnimation::addSprite(SpriteFrame * sprite) {
+bool SpriteAnimation::addSpriteFrame(SpriteFrame * sprite) {
 	if(sprite == NULL) {
 		return false;
 	}
 
 	m_sprites.push_back(sprite);
-	m_animation->addSpriteFrame(sprite);
-
+	
 	if(m_sprite == NULL) {
 		m_sprite = Sprite::createWithSpriteFrameName(m_spriteFileName.data());
 	}
 
-	m_animation->setDelayPerUnit(m_duration / static_cast<float>(m_sprites.size()));
-
 	return true;
 }
 
-
-bool SpriteAnimation::addSprites(const std::vector<SpriteFrame *> & sprites) {
+bool SpriteAnimation::addSpriteFrames(const std::vector<SpriteFrame *> & sprites) {
 	bool addedSprite = false;
 	for(unsigned int i=0;i<sprites.size();i++) {
-		addedSprite = addSprite(sprites[i]) || addedSprite;
+		addedSprite = addSpriteFrame(sprites[i]) || addedSprite;
 	}
 
 	return addedSprite;
@@ -392,7 +464,7 @@ SpriteAnimation * SpriteAnimation::readFrom(FileReader & input) {
 			if(animationSprites.size() != numberOfFrames) { return NULL; }
 
 			newSpriteAnimation = new SpriteAnimation(animationName.data(), spriteFileName.data(), animationDuration, animationType);
-			newSpriteAnimation->addSprites(animationSprites);
+			newSpriteAnimation->addSpriteFrames(animationSprites);
 
 			return newSpriteAnimation;
 		}

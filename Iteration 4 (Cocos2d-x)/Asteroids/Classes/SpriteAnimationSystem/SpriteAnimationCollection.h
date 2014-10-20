@@ -22,7 +22,7 @@ public:
 	const SpriteAnimation * getAnimation(int index) const;
 	const SpriteAnimation * getAnimation(const char * name) const;
 	const SpriteAnimation * getAnimation(const std::string & name) const;
-	bool addAnimation(SpriteAnimation * animation);
+	bool addAnimation(const SpriteAnimation * animation);
 	bool removeAnimation(int index);
 	bool removeAnimation(const SpriteAnimation & animation);
 	bool removeAnimation(const char * name);
@@ -41,7 +41,7 @@ public:
 	static const char * ANIMATION_COLLECTION_HEADER;
 
 private:
-	std::vector<SpriteAnimation *> m_animations;
+	std::vector<const SpriteAnimation *> m_animations;
 };
 
 #endif // SPRITE_ANIMATION_COLLECTION_H

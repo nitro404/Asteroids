@@ -1,6 +1,6 @@
 #include "SpriteAnimationSystem/SpriteAnimationType.h"
 
-const char * SpriteAnimationTypes::spriteAnimationTypeStrings[] = { "Single", "Loop", "Custom" };
+const char * SpriteAnimationTypes::spriteAnimationTypeStrings[] = { "Single", "Loop" };
 const SpriteAnimationTypes::SpriteAnimationType SpriteAnimationTypes::defaultSpriteAnimationType = SpriteAnimationTypes::Single;
 
 bool SpriteAnimationTypes::isValid(SpriteAnimationType type) {

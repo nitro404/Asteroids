@@ -9,12 +9,23 @@ LOCAL_MODULE_FILENAME := libcocos2dcpp
 LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
 				   ../../Classes/Utilities/Utilities.cpp \
+				   ../../Classes/Utilities/Colour.cpp \
 				   ../../Classes/IO/FileReaderMode.cpp \
 				   ../../Classes/IO/FileReader.cpp \
 				   ../../Classes/Math/ExtendedMath.cpp \
 				   ../../Classes/SpriteAnimationSystem/SpriteAnimationType.cpp \
 				   ../../Classes/SpriteAnimationSystem/SpriteAnimation.cpp \
 				   ../../Classes/SpriteAnimationSystem/SpriteAnimationCollection.cpp \
+				   ../../Classes/Entity/Entity.cpp \
+				   ../../Classes/Entity/Entity2D.cpp \
+				   ../../Classes/Entity/AnimatedEntity2D.cpp \
+				   ../../Classes/GameObjects/RotationDirection.cpp \
+				   ../../Classes/GameObjects/Projectile.cpp \
+				   ../../Classes/GameObjects/SpaceShipMovementDirection.cpp \
+				   ../../Classes/GameObjects/SpaceShipColour.cpp \
+				   ../../Classes/GameObjects/SpaceShip.cpp \
+				   ../../Classes/GameSystems/ProjectileSystem.cpp \
+				   ../../Classes/GameSystems/SpaceShipSystem.cpp \
                    ../../Classes/Asteroids.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
