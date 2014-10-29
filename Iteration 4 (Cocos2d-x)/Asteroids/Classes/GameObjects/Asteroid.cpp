@@ -5,8 +5,8 @@ const float Asteroid::maxRotationSpeed = 0.4584f + 15.0f;
 const float Asteroid::minVelocity = 0.08f * 30.0f;
 const float Asteroid::maxVelocity = 3.3f * 30.0f;
 
-Asteroid::Asteroid(Layer * parent, Sprite * sprite, bool largeAsteroid, const Vec2 & position, float size, const Vec2 & scale, float rotation, RotationDirections::RotationDirection rotationDirection, float rotationSpeed, const Vec2 & offset, const Vec2 & velocity)
-	: Entity2D(parent, sprite, position, size, scale, rotation, offset, velocity)
+Asteroid::Asteroid(Layer * parentLayer, Sprite * sprite, bool largeAsteroid, const Vec2 & position, float size, const Vec2 & scale, float rotation, RotationDirections::RotationDirection rotationDirection, float rotationSpeed, const Vec2 & offset, const Vec2 & velocity)
+	: Entity2D(parentLayer, sprite, position, size, scale, rotation, offset, velocity)
 	, m_largeAsteroid(largeAsteroid)
 	, m_rotationDirection(RotationDirections::isValid(rotationDirection) ? rotationDirection : RotationDirections::defaultRotationDirection)
 	, m_rotationSpeed(rotationSpeed < 0 ? -rotationSpeed : rotationSpeed) {

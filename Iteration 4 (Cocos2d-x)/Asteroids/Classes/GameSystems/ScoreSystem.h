@@ -9,13 +9,13 @@ class SpaceShipSystem;
 
 class ScoreSystem : public Entity, public Component {
 public:
-	ScoreSystem(Layer * parent);
+	ScoreSystem(Layer * parentLayer);
 	ScoreSystem(const ScoreSystem & s);
 	ScoreSystem & operator = (const ScoreSystem & s);
 	virtual ~ScoreSystem();
 
-	virtual Layer * getParent() const;
-	virtual void setParent(Layer * parent);
+	virtual Layer * getParentLayer() const;
+	virtual void setParentLayer(Layer * parentLayer);
 
 	bool init(SpaceShipSystem * spaceShipSystem);
 

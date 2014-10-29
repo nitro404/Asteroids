@@ -1,7 +1,7 @@
 #include "Entity/AnimatedEntity2D.h"
 
-AnimatedEntity2D::AnimatedEntity2D(Layer * parent, const SpriteAnimation * spriteAnimation, const Vec2 & position, float size, const Vec2 & scale, float rotation, const Vec2 & offset, const Vec2 & velocity)
-	: Entity2D(parent, NULL, position, size, scale, rotation, offset, velocity)
+AnimatedEntity2D::AnimatedEntity2D(Layer * parentLayer, const SpriteAnimation * spriteAnimation, const Vec2 & position, float size, const Vec2 & scale, float rotation, const Vec2 & offset, const Vec2 & velocity)
+	: Entity2D(parentLayer, NULL, position, size, scale, rotation, offset, velocity)
 	, m_spriteAnimation(spriteAnimation == NULL ? NULL : new SpriteAnimation(*spriteAnimation)) {
 	if(m_spriteAnimation != NULL) {
 		setSprite(m_spriteAnimation->getSprite());

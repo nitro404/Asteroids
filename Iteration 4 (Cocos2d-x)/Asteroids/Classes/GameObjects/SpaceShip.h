@@ -8,7 +8,7 @@
 
 class SpaceShip : public AnimatedEntity2D {
 public:
-	SpaceShip(Layer * parent, const SpaceShipColours::SpaceShipColour colour, const std::vector<SpriteFrame *> & idleSpriteFrames, const std::vector<const SpriteAnimation *> & movementAnimations, ProjectileSystem * projectileSystem, const Vec2 & position = Vec2::ZERO, float rotation = 0.0f);
+	SpaceShip(Layer * parentLayer, const SpaceShipColours::SpaceShipColour colour, const std::vector<SpriteFrame *> & idleSpriteFrames, const std::vector<const SpriteAnimation *> & movementAnimations, ProjectileSystem * projectileSystem, const Vec2 & position = Vec2::ZERO, float rotation = 0.0f);
 	SpaceShip(const SpaceShip & s);
 	SpaceShip & operator = (const SpaceShip & s);
 	virtual ~SpaceShip();
@@ -57,6 +57,7 @@ public:
 private:
 	bool m_enabled;
 	bool m_enginesActive;
+	bool m_lastEnginesActive;
 	bool m_moveForward;
 	bool m_moveBackward;
 	bool m_turnLeft;
@@ -65,8 +66,9 @@ private:
 
 	bool m_initialLaserBeamSpawned;
 	float m_fireLaserTimeElapsed;
-
+	
 	SpaceShipMovementDirections::SpaceShipMovementDirection m_movementDirection;
+	SpaceShipMovementDirections::SpaceShipMovementDirection m_lastMovementDirection;
 	SpaceShipColours::SpaceShipColour m_colour;
 
 	std::vector<Sprite *> m_idleSprites;

@@ -6,7 +6,7 @@
 
 class ProjectileSystem : public Entity, public Component {
 public:
-	ProjectileSystem(Layer * parent);
+	ProjectileSystem(Layer * parentLayer);
 	ProjectileSystem(const ProjectileSystem & p);
 	ProjectileSystem & operator = (const ProjectileSystem & p);
 	virtual ~ProjectileSystem();
@@ -20,8 +20,8 @@ public:
 	bool removeProjectile(const Projectile * projectile);
 	void clearProjectiles();
 
-	virtual Layer * getParent() const;
-	virtual void setParent(Layer * parent);
+	virtual Layer * getParentLayer() const;
+	virtual void setParentLayer(Layer * parentLayer);
 
 	bool init(SpriteAnimationCollection * animations);
 

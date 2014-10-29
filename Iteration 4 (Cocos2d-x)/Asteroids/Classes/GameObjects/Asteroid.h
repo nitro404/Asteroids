@@ -8,7 +8,7 @@
 
 class Asteroid : public Entity2D {
 public:
-	Asteroid(Layer * parent, Sprite * sprite, bool largeAsteroid = false, const Vec2 & position = Vec2::ZERO, float size = 0.0f, const Vec2 & scale = Vec2::ONE, float rotation = 0.0f, RotationDirections::RotationDirection rotationDirection = RotationDirections::defaultRotationDirection, float rotationSpeed = 0.0f, const Vec2 & offset = Vec2::ZERO, const Vec2 & velocity = Vec2::ZERO);
+	Asteroid(Layer * parentLayer, Sprite * sprite, bool largeAsteroid = false, const Vec2 & position = Vec2::ZERO, float size = 0.0f, const Vec2 & scale = Vec2::ONE, float rotation = 0.0f, RotationDirections::RotationDirection rotationDirection = RotationDirections::defaultRotationDirection, float rotationSpeed = 0.0f, const Vec2 & offset = Vec2::ZERO, const Vec2 & velocity = Vec2::ZERO);
 	Asteroid(const Asteroid & a);
 	Asteroid & operator = (const Asteroid & a);
 	virtual ~Asteroid();

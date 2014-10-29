@@ -60,6 +60,7 @@ protected:
 	std::vector<SpriteFrame *> m_sprites;
 	SpriteAnimationTypes::SpriteAnimationType m_type;
 	float m_duration;
+	float m_timeElapsed;
 	Animation * m_animation;
 	Sprite * m_sprite;
 	Action * m_action;

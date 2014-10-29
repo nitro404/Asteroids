@@ -7,7 +7,7 @@
 
 class SpaceShipSystem : public Entity, public Component {
 public:
-	SpaceShipSystem(Layer * parent);
+	SpaceShipSystem(Layer * parentLayer);
 	SpaceShipSystem(const SpaceShipSystem & s);
 	SpaceShipSystem & operator = (const SpaceShipSystem & s);
 	virtual ~SpaceShipSystem();
@@ -15,8 +15,8 @@ public:
 	int numberOfSpaceShips() const;
 	const SpaceShip * getSpaceShip(int index) const;
 
-	virtual Layer * getParent() const;
-	virtual void setParent(Layer * parent);
+	virtual Layer * getParentLayer() const;
+	virtual void setParentLayer(Layer * parent);
 
 	bool init(SpriteAnimationCollection * animations, ProjectileSystem * projectileSystem);
 	bool start(int numberOfPlayers);

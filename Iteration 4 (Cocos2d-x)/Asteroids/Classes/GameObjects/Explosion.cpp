@@ -1,7 +1,7 @@
 #include "GameObjects/Explosion.h"
 
-Explosion::Explosion(Layer * parent, const SpriteAnimation * animation, const Vec2 & position, const Vec2 & velocity)
-	: AnimatedEntity2D(parent, animation, position, 0.0f, Vec2::ONE, 0.0f, Vec2::ZERO, velocity)  {
+Explosion::Explosion(Layer * parentLayer, const SpriteAnimation * animation, const Vec2 & position, const Vec2 & velocity)
+	: AnimatedEntity2D(parentLayer, animation, position, 0.0f, Vec2::ONE, 0.0f, Vec2::ZERO, velocity)  {
 	
 }
 

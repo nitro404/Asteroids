@@ -8,7 +8,7 @@ class SpaceShipSystem;
 
 class AsteroidSystem : public Entity, public Component {
 public:
-	AsteroidSystem(Layer * parent);
+	AsteroidSystem(Layer * parentLayer);
 	AsteroidSystem(const AsteroidSystem & a);
 	AsteroidSystem & operator = (const AsteroidSystem & a);
 	virtual ~AsteroidSystem();
@@ -22,8 +22,8 @@ public:
 	bool removeAsteroid(const Asteroid * asteroid);
 	void clearAsteroids();
 
-	virtual Layer * getParent() const;
-	virtual void setParent(Layer * parent);
+	virtual Layer * getParentLayer() const;
+	virtual void setParentLayer(Layer * parent);
 
 	bool init(const SpaceShipSystem * spaceShipSystem);
 

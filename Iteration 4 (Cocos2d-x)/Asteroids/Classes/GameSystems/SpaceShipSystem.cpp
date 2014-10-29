@@ -3,13 +3,13 @@
 const char * SpaceShipSystem::spaceShipSystemClassName = "SpaceShipSystem";
 const int SpaceShipSystem::maxNumberOfSpaceShips = SpaceShipColours::NumberOfColours;
 
-SpaceShipSystem::SpaceShipSystem(Layer * parent)
-	: Entity(parent)
+SpaceShipSystem::SpaceShipSystem(Layer * parentLayer)
+	: Entity(parentLayer)
 	, m_initialized(false)
 	, m_numberOfSpaceShips(0) {
 	setName(spaceShipSystemClassName);
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 }
 
 SpaceShipSystem::SpaceShipSystem(const SpaceShipSystem & s)
@@ -22,11 +22,11 @@ SpaceShipSystem::SpaceShipSystem(const SpaceShipSystem & s)
 		m_spaceShips.push_back(new SpaceShip(*s.m_spaceShips[i]));
 	}
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 }
 
 SpaceShipSystem & SpaceShipSystem::operator = (const SpaceShipSystem & s) {
-	if(m_parent != NULL) { m_parent->removeComponent(spaceShipSystemClassName); }
+	if(m_parentLayer != NULL) { m_parentLayer->removeComponent(spaceShipSystemClassName); }
 
 	Entity::operator = (s);
 
@@ -42,13 +42,13 @@ SpaceShipSystem & SpaceShipSystem::operator = (const SpaceShipSystem & s) {
 		m_spaceShips.push_back(new SpaceShip(*s.m_spaceShips[i]));
 	}
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 
 	return *this;
 }
 
 SpaceShipSystem::~SpaceShipSystem() {
-	if(m_parent != NULL) { m_parent->removeComponent(spaceShipSystemClassName); }
+	if(m_parentLayer != NULL) { m_parentLayer->removeComponent(spaceShipSystemClassName); }
 
 	for(unsigned int i=0;i<m_spaceShips.size();i++) {
 		delete m_spaceShips[i];
@@ -65,18 +65,18 @@ const SpaceShip * SpaceShipSystem::getSpaceShip(int index) const {
 	return m_spaceShips[index];
 }
 
-Layer * SpaceShipSystem::getParent() const {
-	return Entity::getParent();
+Layer * SpaceShipSystem::getParentLayer() const {
+	return Entity::getParentLayer();
 }
 
-void SpaceShipSystem::setParent(Layer * parent) {
-	if(m_parent == parent) { return; }
+void SpaceShipSystem::setParentLayer(Layer * parentLayer) {
+	if(m_parentLayer == parentLayer) { return; }
 
-	if(m_parent != NULL) { m_parent->removeComponent(spaceShipSystemClassName); }
+	if(m_parentLayer != NULL) { m_parentLayer->removeComponent(spaceShipSystemClassName); }
 
-	Entity::setParent(parent);
+	Entity::setParentLayer(parentLayer);
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 }
 
 bool SpaceShipSystem::init(SpriteAnimationCollection * animations, ProjectileSystem * projectileSystem) {
@@ -130,7 +130,7 @@ bool SpaceShipSystem::init(SpriteAnimationCollection * animations, ProjectileSys
 		else if(i == 2) { spaceShipPosition = Vec2(w * 0.2f, h * 0.8f); spaceShipRotation =   45.0f; }
 		else if(i == 3) { spaceShipPosition = Vec2(w * 0.8f, h * 0.2f); spaceShipRotation = -135.0f; }
 
-		m_spaceShips.push_back(new SpaceShip(m_parent, static_cast<SpaceShipColours::SpaceShipColour>(i), m_idleSpriteFrames[i], m_movementAnimations[i], projectileSystem, spaceShipPosition, spaceShipRotation));
+		m_spaceShips.push_back(new SpaceShip(m_parentLayer, static_cast<SpaceShipColours::SpaceShipColour>(i), m_idleSpriteFrames[i], m_movementAnimations[i], projectileSystem, spaceShipPosition, spaceShipRotation));
 	}
 
 	m_initialized = true;
@@ -152,7 +152,7 @@ bool SpaceShipSystem::start(int numberOfPlayers) {
 	float h = static_cast<float>(visibleDimensions.height);
 
 	if(m_numberOfSpaceShips == 1) {
-		m_spaceShips[0]->setInitialPosition(w * 0.5f, h * 0.5f);
+		m_spaceShips[0]->setInitialPosition(w * 0.9f, h * 0.5f);
 		m_spaceShips[0]->setInitialRotation(0.0f);
 	}
 	else if(m_numberOfSpaceShips == 2) {

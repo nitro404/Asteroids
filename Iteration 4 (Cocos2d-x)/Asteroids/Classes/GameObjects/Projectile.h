@@ -9,7 +9,7 @@ class SpaceShip;
 
 class Projectile : public AnimatedEntity2D {
 public:
-	Projectile(Layer * parent, const SpriteAnimation * animation, const SpaceShip * projectileSource, const Vec2 & position = Vec2::ZERO, float rotation = 0.0f);
+	Projectile(Layer * parentLayer, const SpriteAnimation * animation, const SpaceShip * projectileSource, const Vec2 & position = Vec2::ZERO, float rotation = 0.0f);
 	Projectile(const Projectile & p);
 	Projectile & operator = (const Projectile & p);
 	virtual ~Projectile();

@@ -2,14 +2,14 @@
 
 const char * ExplosionSystem::explosionSystemClassName = "ExplosionSystem";
 
-ExplosionSystem::ExplosionSystem(Layer * parent)
-	: Entity(parent)
+ExplosionSystem::ExplosionSystem(Layer * parentLayer)
+	: Entity(parentLayer)
 	, m_initialized(false)
 	, m_explosionAnimation(NULL) {
 //	, m_explosionSound(NULL) {
 	setName(explosionSystemClassName);
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 }
 
 ExplosionSystem::ExplosionSystem(const ExplosionSystem & e)
@@ -23,11 +23,11 @@ ExplosionSystem::ExplosionSystem(const ExplosionSystem & e)
 		m_explosions.push_back(new Explosion(*e.m_explosions[i]));
 	}
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 }
 
 ExplosionSystem & ExplosionSystem::operator = (const ExplosionSystem & e) {
-	if(m_parent != NULL) { m_parent->removeComponent(explosionSystemClassName); }
+	if(m_parentLayer != NULL) { m_parentLayer->removeComponent(explosionSystemClassName); }
 
 	Entity::operator = (e);
 
@@ -45,13 +45,13 @@ ExplosionSystem & ExplosionSystem::operator = (const ExplosionSystem & e) {
 		m_explosions.push_back(new Explosion(*e.m_explosions[i]));
 	}
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 
 	return *this;
 }
 
 ExplosionSystem::~ExplosionSystem() {
-	if(m_parent != NULL) { m_parent->removeComponent(explosionSystemClassName); }
+	if(m_parentLayer != NULL) { m_parentLayer->removeComponent(explosionSystemClassName); }
 
 	for(unsigned int i=0;i<m_explosions.size();i++) {
 		delete m_explosions[i];
@@ -138,18 +138,18 @@ void ExplosionSystem::clearExplosions() {
 	m_explosions.clear();
 }
 
-Layer * ExplosionSystem::getParent() const {
-	return Entity::getParent();
+Layer * ExplosionSystem::getParentLayer() const {
+	return Entity::getParentLayer();
 }
 
-void ExplosionSystem::setParent(Layer * parent) {
-	if(m_parent == parent) { return; }
+void ExplosionSystem::setParentLayer(Layer * parent) {
+	if(m_parentLayer == parent) { return; }
 
-	if(m_parent != NULL) { m_parent->removeComponent(explosionSystemClassName); }
+	if(m_parentLayer != NULL) { m_parentLayer->removeComponent(explosionSystemClassName); }
 
-	Entity::setParent(parent);
+	Entity::setParentLayer(parent);
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 }
 
 bool ExplosionSystem::init(SpriteAnimationCollection * animations) {
@@ -178,7 +178,7 @@ bool ExplosionSystem::init(SpriteAnimationCollection * animations) {
 void ExplosionSystem::spawnExplosion(const Vec2 & position, const Vec2 & velocity) {
 	if(!m_initialized) { return; }
 
-	m_explosions.push_back(new Explosion(m_parent, m_explosionAnimation, position, velocity));
+	m_explosions.push_back(new Explosion(m_parentLayer, m_explosionAnimation, position, velocity));
 
 /*
 	if(m_explosionSound != NULL) {
@@ -196,7 +196,6 @@ void ExplosionSystem::reset() {
 void ExplosionSystem::update(float timeElapsed) {
 	if(!m_initialized) { return; }
 
-/*
 	for(unsigned int i=0;i<m_explosions.size();i++) {
 		m_explosions[i]->update(timeElapsed);
 		
@@ -208,7 +207,6 @@ void ExplosionSystem::update(float timeElapsed) {
 			i--;
 		}
 	}
-*/
 }
 
 bool ExplosionSystem::operator == (const ExplosionSystem & e) const {

@@ -1,7 +1,7 @@
 #include "Entity/Entity2D.h"
 
-Entity2D::Entity2D(Layer * parent, Sprite * sprite, const Vec2 & position, float size, const Vec2 & scale, float rotation, const Vec2 & offset, const Vec2 & velocity)
-	: Entity(parent)
+Entity2D::Entity2D(Layer * parentLayer, Sprite * sprite, const Vec2 & position, float size, const Vec2 & scale, float rotation, const Vec2 & offset, const Vec2 & velocity)
+	: Entity(parentLayer)
 	, m_sprite(NULL)
 	, m_position(position)
 	, m_size(size < 0.0f ? 0.0f : size)
@@ -55,7 +55,7 @@ Entity2D & Entity2D::operator = (const Entity2D & e) {
 }
 
 Entity2D::~Entity2D() {
-
+	setSprite(NULL);
 }
 
 void Entity2D::updateInitialValues() {
@@ -189,7 +189,7 @@ void Entity2D::setRotation(float rotation) {
 	m_rotation = rotation;
 
 	if(m_sprite != NULL) {
-		m_sprite->setRotation(rotation - 90.0f);
+		m_sprite->setRotation(rotation);
 	}
 }
 
@@ -265,21 +265,21 @@ void Entity2D::setSprite(Sprite * sprite) {
 	m_lastSprite = m_sprite;
 
 	if(m_lastSprite != NULL) {
-		if(m_parent != NULL) {
-			m_parent->removeChild(m_lastSprite);
+		if(m_parentLayer != NULL) {
+			m_parentLayer->removeChild(m_lastSprite);
 		}
 	}
 	
 	m_sprite = sprite;
 
 	if(m_sprite != NULL) {
-		if(m_parent != NULL) {
-			m_parent->addChild(m_sprite);
+		if(m_parentLayer != NULL) {
+			m_parentLayer->addChild(m_sprite);
 		}
 
 		m_sprite->setPosition(m_position);
 		m_sprite->setScale(m_scale.x, m_scale.y);
-		m_sprite->setRotation(m_rotation - 90.0f);
+		m_sprite->setRotation(m_rotation);
 	}
 }
 

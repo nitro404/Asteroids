@@ -6,7 +6,7 @@
 
 class ExplosionSystem : public Entity, public Component {
 public:
-	ExplosionSystem(Layer * parent);
+	ExplosionSystem(Layer * parentLayer);
 	ExplosionSystem(const ExplosionSystem & e);
 	ExplosionSystem & operator = (const ExplosionSystem & e);
 	virtual ~ExplosionSystem();
@@ -20,8 +20,8 @@ public:
 	bool removeExplosion(const Explosion * explosion);
 	void clearExplosions();
 
-	virtual Layer * getParent() const;
-	virtual void setParent(Layer * parent);
+	virtual Layer * getParentLayer() const;
+	virtual void setParentLayer(Layer * parent);
 
 	bool init(SpriteAnimationCollection * animations);
 

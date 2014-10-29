@@ -3,8 +3,8 @@
 
 const char * ProjectileSystem::projectileSystemClassName = "ProjectileSystem";
 
-ProjectileSystem::ProjectileSystem(Layer * parent)
-	: Entity(parent)
+ProjectileSystem::ProjectileSystem(Layer * parentLayer)
+	: Entity(parentLayer)
 	, m_initialized(false) {
 //	, m_laserSound(NULL) {
 	setName(projectileSystemClassName);
@@ -13,7 +13,7 @@ ProjectileSystem::ProjectileSystem(Layer * parent)
 		m_laserAnimations[i] = NULL;
 	}
 	
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 	
 }
 
@@ -31,11 +31,11 @@ ProjectileSystem::ProjectileSystem(const ProjectileSystem & p)
 		m_projectiles.push_back(new Projectile(*p.m_projectiles[i]));
 	}
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 }
 
 ProjectileSystem & ProjectileSystem::operator = (const ProjectileSystem & p) {
-	if(m_parent != NULL) { m_parent->removeComponent(projectileSystemClassName); }
+	if(m_parentLayer != NULL) { m_parentLayer->removeComponent(projectileSystemClassName); }
 
 	Entity::operator = (p);
 
@@ -56,13 +56,13 @@ ProjectileSystem & ProjectileSystem::operator = (const ProjectileSystem & p) {
 		m_projectiles.push_back(new Projectile(*p.m_projectiles[i]));
 	}
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 
 	return *this;
 }
 
 ProjectileSystem::~ProjectileSystem() {
-	if(m_parent != NULL) { m_parent->removeComponent(projectileSystemClassName); }
+	if(m_parentLayer != NULL) { m_parentLayer->removeComponent(projectileSystemClassName); }
 
 	for(unsigned int i=0;i<m_projectiles.size();i++) {
 		delete m_projectiles[i];
@@ -149,18 +149,18 @@ void ProjectileSystem::clearProjectiles() {
 	m_projectiles.clear();
 }
 
-Layer * ProjectileSystem::getParent() const {
-	return Entity::getParent();
+Layer * ProjectileSystem::getParentLayer() const {
+	return Entity::getParentLayer();
 }
 
-void ProjectileSystem::setParent(Layer * parent) {
-	if(m_parent == parent) { return; }
+void ProjectileSystem::setParentLayer(Layer * parentLayer) {
+	if(m_parentLayer == parentLayer) { return; }
 
-	if(m_parent != NULL) { m_parent->removeComponent(projectileSystemClassName); }
+	if(m_parentLayer != NULL) { m_parentLayer->removeComponent(projectileSystemClassName); }
 
-	Entity::setParent(parent);
+	Entity::setParentLayer(parentLayer);
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 }
 
 bool ProjectileSystem::init(SpriteAnimationCollection * animations) {
@@ -195,7 +195,7 @@ bool ProjectileSystem::init(SpriteAnimationCollection * animations) {
 void ProjectileSystem::spawnLaserBeam(const Vec2 & position, float rotation, const SpaceShip * source) {
 	if(!m_initialized || source == NULL) { return; }
 
-	m_projectiles.push_back(new Projectile(m_parent, m_laserAnimations[static_cast<int>(source->getColour())], source, position, rotation));
+	m_projectiles.push_back(new Projectile(m_parentLayer, m_laserAnimations[static_cast<int>(source->getColour())], source, position, rotation));
 
 /*
 	if(m_laserSound != NULL) {

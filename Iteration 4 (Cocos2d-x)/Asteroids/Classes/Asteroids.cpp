@@ -1,5 +1,7 @@
 #include "Asteroids.h"
 
+Asteroids * Asteroids::instance(NULL);
+
 Scene * Asteroids::createScene() {
 	auto scene = Scene::create();
 	auto layer = Asteroids::create();
@@ -7,8 +9,38 @@ Scene * Asteroids::createScene() {
 	return scene;
 }
 
+Asteroids * Asteroids::getInstance() {
+	return instance;
+}
+
+ProjectileSystem * Asteroids::getProjectileSystem() const {
+	return m_projectileSystem;
+}
+
+SpaceShipSystem * Asteroids::getSpaceShipSystem() const {
+	return m_spaceShipSystem;
+}
+
+AsteroidSystem * Asteroids::getAsteroidSystem() const {
+	return m_asteroidSystem;
+}
+
+ExplosionSystem * Asteroids::getExplosionSystem() const {
+	return m_explosionSystem;
+}
+
+ScoreSystem * Asteroids::getScoreSystem() const {
+	return m_scoreSystem;
+}
+
+CollisionSystem * Asteroids::getCollisionSystem() const {
+	return m_collisionSystem;
+}
+
 bool Asteroids::init() {
 	if(!Layer::init()) { return false; }
+
+	instance = this;
 
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Asteroids.plist", "Asteroids.png");
 
@@ -32,23 +64,71 @@ bool Asteroids::init() {
 	m_scoreSystem->init(m_spaceShipSystem);
 	m_collisionSystem->init(m_projectileSystem, m_spaceShipSystem, m_asteroidSystem, m_explosionSystem, m_scoreSystem);
 
-	m_spaceShipSystem->start(4);
+	m_spaceShipSystem->start(1);
+
+	EventListenerKeyboard * keyboardListener = EventListenerKeyboard::create();
+
+	keyboardListener->onKeyPressed = [] (EventKeyboard::KeyCode keyCode, Event * event) {
+		if(!Asteroids::getInstance()->getSpaceShipSystem()->isStarted()) { return; }
+
+		SpaceShip * spaceShip = const_cast<SpaceShip *>(Asteroids::getInstance()->getSpaceShipSystem()->getSpaceShip(0));
+
+			 if(keyCode == EventKeyboard::KeyCode::KEY_W)		{ spaceShip->moveForward(true); }
+		else if(keyCode == EventKeyboard::KeyCode::KEY_S)		{ spaceShip->moveBackward(true); }
+		else if(keyCode == EventKeyboard::KeyCode::KEY_A)		{ spaceShip->turnLeft(true); }
+		else if(keyCode == EventKeyboard::KeyCode::KEY_D)		{ spaceShip->turnRight(true); }
+		else if(keyCode == EventKeyboard::KeyCode::KEY_SPACE)	{ spaceShip->fireLaser(true); }
+	};
+
+	keyboardListener->onKeyReleased = [] (EventKeyboard::KeyCode keyCode, Event * event) {
+		if(!Asteroids::getInstance()->getSpaceShipSystem()->isStarted()) { return; }
+
+		SpaceShip * spaceShip = const_cast<SpaceShip *>(Asteroids::getInstance()->getSpaceShipSystem()->getSpaceShip(0));
+
+			 if(keyCode == EventKeyboard::KeyCode::KEY_W)		{ spaceShip->moveForward(false); }
+		else if(keyCode == EventKeyboard::KeyCode::KEY_S)		{ spaceShip->moveBackward(false); }
+		else if(keyCode == EventKeyboard::KeyCode::KEY_A)		{ spaceShip->turnLeft(false); }
+		else if(keyCode == EventKeyboard::KeyCode::KEY_D)		{ spaceShip->turnRight(false); }
+		else if(keyCode == EventKeyboard::KeyCode::KEY_SPACE)	{ spaceShip->fireLaser(false); }
+	};
+
+	getEventDispatcher()->addEventListenerWithSceneGraphPriority(keyboardListener, this);
+
+	EventListenerTouchOneByOne * touchListener = EventListenerTouchOneByOne::create();
+
+	touchListener->onTouchBegan = [] (Touch * touch, Event * event) {
+		if(!Asteroids::getInstance()->getSpaceShipSystem()->isStarted()) { return false; }
+
+		SpaceShip * spaceShip = const_cast<SpaceShip *>(Asteroids::getInstance()->getSpaceShipSystem()->getSpaceShip(0));
+
+		spaceShip->fireLaser(true);
+
+		return true;
+    };
+
+	touchListener->onTouchMoved = [] (Touch * touch, Event * event) {
+		if(!Asteroids::getInstance()->getSpaceShipSystem()->isStarted()) { return; }
+
+		Size visibleDimensions = Director::getInstance()->getVisibleSize();
+
+		SpaceShip * spaceShip = const_cast<SpaceShip *>(Asteroids::getInstance()->getSpaceShipSystem()->getSpaceShip(0));
+
+		spaceShip->setPosition(spaceShip->x(), visibleDimensions.height - touch->getLocationInView().y);
+    };
+
+	touchListener->onTouchEnded = [=] (Touch * touch, Event * event) {
+		if(!Asteroids::getInstance()->getSpaceShipSystem()->isStarted()) { return; }
+
+		SpaceShip * spaceShip = const_cast<SpaceShip *>(Asteroids::getInstance()->getSpaceShipSystem()->getSpaceShip(0));
+
+		spaceShip->fireLaser(false);
+	};
+
+	getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
 
 	schedule(schedule_selector(Asteroids::update)); 
 
 	return true;
-}
-
-void Asteroids::onEnter() {
-	Layer::onEnter();
-}
-
-void Asteroids::onExit() {
-	Layer::onExit();
-}
-
-bool Asteroids::onTouchBegan(Touch * touch, Event * event) {
-	return Layer::onTouchBegan(touch, event);
 }
 
 void Asteroids::menuCloseCallback(Ref * pSender) {

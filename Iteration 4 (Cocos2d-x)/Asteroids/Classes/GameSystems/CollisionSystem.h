@@ -13,13 +13,13 @@ class ScoreSystem;
 
 class CollisionSystem : public Entity, public Component {
 public:
-	CollisionSystem(Layer * parent);
+	CollisionSystem(Layer * parentLayer);
 	CollisionSystem(const CollisionSystem & c);
 	CollisionSystem & operator = (const CollisionSystem & c);
 	virtual ~CollisionSystem();
 
-	virtual Layer * getParent() const;
-	virtual void setParent(Layer * parent);
+	virtual Layer * getParentLayer() const;
+	virtual void setParentLayer(Layer * parentLayer);
 
 	bool init(ProjectileSystem * projectileSystem, SpaceShipSystem * spaceShipSystem, AsteroidSystem * asteroidSystem, ExplosionSystem * explosionSystem, ScoreSystem * scoreSystem);
 

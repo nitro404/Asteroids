@@ -270,10 +270,15 @@ bool SpriteAnimation::isPlaying() const {
 }
 
 bool SpriteAnimation::isFinished() const {
+/*
 	if(!m_playing || m_action == NULL) { return true; }
 	if(m_type == SpriteAnimationTypes::Loop) { return false; }
 	
 	return m_action->isDone();
+*/
+	if(!m_playing) { return true; }
+
+	return m_timeElapsed >= m_duration;
 }
 
 void SpriteAnimation::stop() {
@@ -282,14 +287,33 @@ void SpriteAnimation::stop() {
 	if(m_sprite != NULL) { m_sprite->stopAction(m_action); }
 	m_animation = NULL;
 	m_action = NULL;
+	m_timeElapsed = 0.0f;
 	m_playing = false;
 }
 
 void SpriteAnimation::update(float timeElapsed) {
+/*
 	if(m_playing && isFinished() || m_sprite == NULL) {
 		if(m_sprite != NULL) { m_sprite->stopAction(m_action); }
 		m_animation = NULL;
 		m_action = NULL;
+		m_playing = false;
+	}
+*/
+	if(!m_playing) { return; }
+
+	if(m_type != SpriteAnimationTypes::Single) { return; }
+
+	if(m_sprites.size() > 0) {
+		m_timeElapsed += timeElapsed;
+		
+		if(m_timeElapsed > m_duration) {
+			m_timeElapsed = m_duration;
+			m_playing = false;
+		}
+	}
+
+	if(isFinished()) {
 		m_playing = false;
 	}
 }

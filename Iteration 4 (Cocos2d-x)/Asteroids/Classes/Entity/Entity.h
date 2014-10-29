@@ -6,7 +6,7 @@
 
 class Entity {
 public:
-	Entity(Layer * parent);
+	Entity(Layer * parentLayer);
 	Entity(const Entity & e);
 	Entity & operator = (const Entity & e);
 	virtual ~Entity();
@@ -14,8 +14,8 @@ public:
 	int getID() const;
 	bool setID(int id);
 
-	virtual Layer * getParent() const;
-	virtual void setParent(Layer * parent);
+	virtual Layer * getParentLayer() const;
+	virtual void setParentLayer(Layer * parent);
 
 	virtual void reset();
 	virtual void update(float timeElapsed);
@@ -25,7 +25,7 @@ public:
 
 protected:
 	int m_id;
-	Layer * m_parent;
+	Layer * m_parentLayer;
 
 private:
 	static int idCounter;

@@ -3,8 +3,8 @@
 
 const char * ScoreSystem::scoreSystemClassName = "ScoreSystem";
 
-ScoreSystem::ScoreSystem(Layer * parent)
-	: Entity(parent)
+ScoreSystem::ScoreSystem(Layer * parentLayer)
+	: Entity(parentLayer)
 	, m_initialized(false)
 	, m_spaceShipSystem(NULL) {
 //	, m_scoreFont(NULL) {
@@ -14,7 +14,7 @@ ScoreSystem::ScoreSystem(Layer * parent)
 		m_playerScores[i] = 0;
 	}
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 }
 
 ScoreSystem::ScoreSystem(const ScoreSystem & s)
@@ -28,11 +28,11 @@ ScoreSystem::ScoreSystem(const ScoreSystem & s)
 		m_playerScores[i] = s.m_playerScores[i];
 	}
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 }
 
 ScoreSystem & ScoreSystem::operator = (const ScoreSystem & s) {
-	if(m_parent != NULL) { m_parent->removeComponent(scoreSystemClassName); }
+	if(m_parentLayer != NULL) { m_parentLayer->removeComponent(scoreSystemClassName); }
 
 	Entity::operator = (s);
 
@@ -44,27 +44,27 @@ ScoreSystem & ScoreSystem::operator = (const ScoreSystem & s) {
 		m_playerScores[i] = s.m_playerScores[i];
 	}
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 
 	return *this;
 }
 
 ScoreSystem::~ScoreSystem() {
-	if(m_parent != NULL) { m_parent->removeComponent(scoreSystemClassName); }
+	if(m_parentLayer != NULL) { m_parentLayer->removeComponent(scoreSystemClassName); }
 }
 
-Layer * ScoreSystem::getParent() const {
-	return Entity::getParent();
+Layer * ScoreSystem::getParentLayer() const {
+	return Entity::getParentLayer();
 }
 
-void ScoreSystem::setParent(Layer * parent) {
-	if(m_parent == parent) { return; }
+void ScoreSystem::setParentLayer(Layer * parentLayer) {
+	if(m_parentLayer == parentLayer) { return; }
 
-	if(m_parent != NULL) { m_parent->removeComponent(scoreSystemClassName); }
+	if(m_parentLayer != NULL) { m_parentLayer->removeComponent(scoreSystemClassName); }
 
-	Entity::setParent(parent);
+	Entity::setParentLayer(parentLayer);
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 }
 
 bool ScoreSystem::init(SpaceShipSystem * spaceShipSystem) {

@@ -2,21 +2,21 @@
 
 int Entity::idCounter = 1;
 
-Entity::Entity(Layer * parent)
+Entity::Entity(Layer * parentLayer)
 	: m_id(idCounter++)
-	, m_parent(parent) {
+	, m_parentLayer(parentLayer) {
 	
 }
 
 Entity::Entity(const Entity & e)
 	: m_id(e.m_id)
-	, m_parent(e.m_parent) {
+	, m_parentLayer(e.m_parentLayer) {
 	
 }
 
 Entity & Entity::operator = (const Entity & e) {
 	m_id = e.m_id;
-	m_parent = e.m_parent;
+	m_parentLayer = e.m_parentLayer;
 
 	return *this;
 }
@@ -37,12 +37,12 @@ bool Entity::setID(int id) {
 	return true;
 }
 
-Layer * Entity::getParent() const {
-	return m_parent;
+Layer * Entity::getParentLayer() const {
+	return m_parentLayer;
 }
 
-void Entity::setParent(Layer * parent) {
-	m_parent = parent;
+void Entity::setParentLayer(Layer * parentLayer) {
+	m_parentLayer = parentLayer;
 }
 
 void Entity::reset() {

@@ -5,13 +5,13 @@ const char * AsteroidSystem::asteroidSystemClassName = "AsteroidSystem";
 const int AsteroidSystem::maxNumberOfAsteroids = 22;
 const int AsteroidSystem::numberOfAsteroidSprites = 6;
 
-AsteroidSystem::AsteroidSystem(Layer * parent)
-	: Entity(parent)
+AsteroidSystem::AsteroidSystem(Layer * parentLayer)
+	: Entity(parentLayer)
 	, m_initialized(false)
 	, m_spaceShipSystem(NULL) {
 	setName(asteroidSystemClassName);
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 }
 
 AsteroidSystem::AsteroidSystem(const AsteroidSystem & a)
@@ -28,11 +28,11 @@ AsteroidSystem::AsteroidSystem(const AsteroidSystem & a)
 		m_asteroids.push_back(new Asteroid(*a.m_asteroids[i]));
 	}
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 }
 
 AsteroidSystem & AsteroidSystem::operator = (const AsteroidSystem & a) {
-	if(m_parent != NULL) { m_parent->removeComponent(asteroidSystemClassName); }
+	if(m_parentLayer != NULL) { m_parentLayer->removeComponent(asteroidSystemClassName); }
 
 	Entity::operator = (a);
 
@@ -54,13 +54,13 @@ AsteroidSystem & AsteroidSystem::operator = (const AsteroidSystem & a) {
 		m_asteroids.push_back(new Asteroid(*a.m_asteroids[i]));
 	}
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 
 	return *this;
 }
 
 AsteroidSystem::~AsteroidSystem() {
-	if(m_parent != NULL) { m_parent->removeComponent(asteroidSystemClassName); }
+	if(m_parentLayer != NULL) { m_parentLayer->removeComponent(asteroidSystemClassName); }
 
 	for(unsigned int i=0;i<m_asteroids.size();i++) {
 		delete m_asteroids[i];
@@ -147,18 +147,18 @@ void AsteroidSystem::clearAsteroids() {
 	m_asteroids.clear();
 }
 
-Layer * AsteroidSystem::getParent() const {
-	return Entity::getParent();
+Layer * AsteroidSystem::getParentLayer() const {
+	return Entity::getParentLayer();
 }
 
-void AsteroidSystem::setParent(Layer * parent) {
-	if(m_parent == parent) { return; }
+void AsteroidSystem::setParentLayer(Layer * parentLayer) {
+	if(m_parentLayer == parentLayer) { return; }
 
-	if(m_parent != NULL) { m_parent->removeComponent(asteroidSystemClassName); }
+	if(m_parentLayer != NULL) { m_parentLayer->removeComponent(asteroidSystemClassName); }
 
-	Entity::setParent(parent);
+	Entity::setParentLayer(parentLayer);
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 }
 
 bool AsteroidSystem::init(const SpaceShipSystem * spaceShipSystem) {
@@ -268,7 +268,7 @@ void AsteroidSystem::spawnAsteroid(AsteroidTypes::AsteroidType type, const Vec2 
 		}
 	}
 
-	m_asteroids.push_back(new Asteroid(m_parent, Sprite::createWithSpriteFrame(m_asteroidSpriteFrames[asteroidIndex]), largeAsteroid, position, size, Vec2::ONE, rotation, rotationDirection, rotationSpeed, Vec2::ZERO, velocity));
+	m_asteroids.push_back(new Asteroid(m_parentLayer, Sprite::createWithSpriteFrame(m_asteroidSpriteFrames[asteroidIndex]), largeAsteroid, position, size, Vec2::ONE, rotation, rotationDirection, rotationSpeed, Vec2::ZERO, velocity));
 }
 
 void AsteroidSystem::spawnAsteroidCluster(const Vec2 & position, float radius) {

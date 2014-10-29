@@ -7,8 +7,8 @@
 
 const char * CollisionSystem::collisionSystemClassName = "CollisionSystem";
 
-CollisionSystem::CollisionSystem(Layer * parent)
-	: Entity(parent)
+CollisionSystem::CollisionSystem(Layer * parentLayer)
+	: Entity(parentLayer)
 	, m_initialized(false)
 	, m_projectileSystem(NULL)
 	, m_spaceShipSystem(NULL)
@@ -17,7 +17,7 @@ CollisionSystem::CollisionSystem(Layer * parent)
 	, m_scoreSystem(NULL) {
 	setName(collisionSystemClassName);
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 }
 
 CollisionSystem::CollisionSystem(const CollisionSystem & c)
@@ -30,11 +30,11 @@ CollisionSystem::CollisionSystem(const CollisionSystem & c)
 	, m_scoreSystem(c.m_scoreSystem) {
 	setName(collisionSystemClassName);
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 }
 
 CollisionSystem & CollisionSystem::operator = (const CollisionSystem & c) {
-	if(m_parent != NULL) { m_parent->removeComponent(collisionSystemClassName); }
+	if(m_parentLayer != NULL) { m_parentLayer->removeComponent(collisionSystemClassName); }
 
 	Entity::operator = (c);
 
@@ -45,27 +45,27 @@ CollisionSystem & CollisionSystem::operator = (const CollisionSystem & c) {
 	m_explosionSystem = c.m_explosionSystem;
 	m_scoreSystem = c.m_scoreSystem;
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 
 	return *this;
 }
 
 CollisionSystem::~CollisionSystem() {
-	if(m_parent != NULL) { m_parent->removeComponent(collisionSystemClassName); }
+	if(m_parentLayer != NULL) { m_parentLayer->removeComponent(collisionSystemClassName); }
 }
 
-Layer * CollisionSystem::getParent() const {
-	return Entity::getParent();
+Layer * CollisionSystem::getParentLayer() const {
+	return Entity::getParentLayer();
 }
 
-void CollisionSystem::setParent(Layer * parent) {
-	if(m_parent == parent) { return; }
+void CollisionSystem::setParentLayer(Layer * parentLayer) {
+	if(m_parentLayer == parentLayer) { return; }
 
-	if(m_parent != NULL) { m_parent->removeComponent(collisionSystemClassName); }
+	if(m_parentLayer != NULL) { m_parentLayer->removeComponent(collisionSystemClassName); }
 
-	Entity::setParent(parent);
+	Entity::setParentLayer(parentLayer);
 
-	if(m_parent != NULL) { m_parent->addComponent(this); }
+	if(m_parentLayer != NULL) { m_parentLayer->addComponent(this); }
 }
 
 bool CollisionSystem::init(ProjectileSystem * projectileSystem, SpaceShipSystem * spaceShipSystem, AsteroidSystem * asteroidSystem, ExplosionSystem * explosionSystem, ScoreSystem * scoreSystem) {

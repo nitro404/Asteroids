@@ -16,14 +16,20 @@ using namespace cocos2d;
 class Asteroids : public Layer {
 public:
 	static Scene * createScene();
+	static Asteroids * getInstance();
+	ProjectileSystem * getProjectileSystem() const;
+	SpaceShipSystem * getSpaceShipSystem() const;
+	AsteroidSystem * getAsteroidSystem() const;
+	ExplosionSystem * getExplosionSystem() const;
+	ScoreSystem * getScoreSystem() const;
+	CollisionSystem * getCollisionSystem() const;
 	virtual bool init();
-	virtual void onEnter();
-	virtual void onExit();
-	bool onTouchBegan(Touch * touch, Event * event);
 	void menuCloseCallback(Ref * pSender);
 	CREATE_FUNC(Asteroids);
 
 protected:
+	static Asteroids * instance;
+
 	SpriteAnimationCollection * m_animations;
 
 	ProjectileSystem * m_projectileSystem;

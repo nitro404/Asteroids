@@ -6,7 +6,7 @@
 
 class Entity2D : public Entity {
 public:
-	Entity2D(Layer * parent, Sprite * sprite = NULL, const Vec2 & position = Vec2::ZERO, float size = 0.0f, const Vec2 & scale = Vec2::ONE, float rotation = 0.0f, const Vec2 & offset = Vec2::ZERO, const Vec2 & velocity = Vec2::ZERO);
+	Entity2D(Layer * parentLayer, Sprite * sprite = NULL, const Vec2 & position = Vec2::ZERO, float size = 0.0f, const Vec2 & scale = Vec2::ONE, float rotation = 0.0f, const Vec2 & offset = Vec2::ZERO, const Vec2 & velocity = Vec2::ZERO);
 	Entity2D(const Entity2D & e);
 	Entity2D & operator = (const Entity2D & e);
 	virtual ~Entity2D();

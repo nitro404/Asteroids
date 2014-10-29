@@ -4,8 +4,8 @@
 const float Projectile::projectileSize = 4.0f;
 const float Projectile::projectileSpeed = 540.0f;
 
-Projectile::Projectile(Layer * parent, const SpriteAnimation * animation, const SpaceShip * projectileSource, const Vec2 & position, float rotation)
-	: AnimatedEntity2D(parent, animation, position, projectileSize, Vec2::ONE, rotation, Vec2::ZERO, Vec2::ZERO)
+Projectile::Projectile(Layer * parentLayer, const SpriteAnimation * animation, const SpaceShip * projectileSource, const Vec2 & position, float rotation)
+	: AnimatedEntity2D(parentLayer, animation, position, projectileSize, Vec2::ONE, rotation, Vec2::ZERO, Vec2::ZERO)
 	, m_projectileSource(projectileSource) {
 	updateVelocity();
 }
