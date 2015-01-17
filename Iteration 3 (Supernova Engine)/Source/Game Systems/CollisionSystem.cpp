@@ -214,7 +214,7 @@ void CollisionSystem::handleAsteroidCollision(Asteroid * a, Asteroid * b) {
 	double dy = abs(a->y() - b->y());
 	double d = sqrt(pow(dx, 2) + pow(dy, 2));
 
-	if(d == 0.0) { return; }
+	if(d == 0.0f) { return; }
 
 	double angle_b = asin(dy / d);
 	double angle_d = asin(abs(a->getVelocity().x) / v);

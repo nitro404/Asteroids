@@ -13,13 +13,15 @@ Projectile::Projectile(const SpriteAnimation * animation, const SpaceShip * proj
 Projectile::Projectile(const Projectile & p)
 	: AnimatedEntity2D(p)
 	, m_projectileSource(p.m_projectileSource) {
-	
+	updateVelocity();
 }
 
 Projectile & Projectile::operator = (const Projectile & p) {
 	AnimatedEntity2D::operator = (p);
 
 	m_projectileSource = p.m_projectileSource;
+
+	updateVelocity();
 
 	return *this;
 }

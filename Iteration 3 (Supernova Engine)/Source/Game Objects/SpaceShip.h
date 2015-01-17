@@ -50,8 +50,9 @@ public:
 	static const float projectileSpawnRadius;
 	static const float minimumSpawnRadius;
 
-private:	
+private:
 	bool m_enginesActive;
+	bool m_lastEnginesActive;
 	bool m_moveForward;
 	bool m_moveBackward;
 	bool m_turnLeft;
@@ -60,8 +61,9 @@ private:
 
 	bool m_initialLaserBeamSpawned;
 	unsigned int m_fireLaserTimeElapsed;
-
+	
 	SpaceShipMovementDirections::SpaceShipMovementDirection m_movementDirection;
+	SpaceShipMovementDirections::SpaceShipMovementDirection m_lastMovementDirection;
 	SpaceShipColours::SpaceShipColour m_colour;
 
 	QVector<const Sprite *> m_idleSprites;

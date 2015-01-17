@@ -21,7 +21,7 @@ Explosion::~Explosion() {
 }
 
 bool Explosion::isFinished() const {
-	return m_spriteAnimation->isFinished();
+	return m_spriteAnimation == NULL ? true : m_spriteAnimation->isFinished();
 }
 
 bool Explosion::operator == (const Explosion & e) const {

@@ -11,6 +11,7 @@ const float SpaceShip::minimumSpawnRadius = 100.0f;
 SpaceShip::SpaceShip(const SpaceShipColours::SpaceShipColour colour, const QVector<const Sprite *> & idleSprites, const QVector<const SpriteAnimation *> & movementAnimations, ProjectileSystem * projectileSystem, const Vector2 & position, float rotation)
 	: AnimatedEntity2D(NULL, position, spaceShipSize, Vector2::One, rotation, Vector2::Zero, Vector2::Zero)
 	, m_enginesActive(false)
+	, m_lastEnginesActive(false)
 	, m_moveForward(false)
 	, m_moveBackward(false)
 	, m_turnLeft(false)
@@ -19,6 +20,7 @@ SpaceShip::SpaceShip(const SpaceShipColours::SpaceShipColour colour, const QVect
 	, m_initialLaserBeamSpawned(false)
 	, m_fireLaserTimeElapsed(0)
 	, m_movementDirection(SpaceShipMovementDirections::Idle)
+	, m_lastMovementDirection(SpaceShipMovementDirections::Idle)
 	, m_colour(colour)
 	, m_projectileSystem(projectileSystem) {
 	for(int i=0;i<idleSprites.size();i++) {
@@ -33,6 +35,10 @@ SpaceShip::SpaceShip(const SpaceShipColours::SpaceShipColour colour, const QVect
 		m_movementAnimations.push_back(new SpriteAnimation(*movementAnimations[i]));
 	}
 
+	if(m_idleSprites.size() > 1) {
+		m_sprite = m_idleSprites[1];
+	}
+
 	update(0);
 }
 
@@ -40,6 +46,7 @@ SpaceShip::SpaceShip(const SpaceShip & s)
 	: AnimatedEntity2D(s)
 	, m_colour(s.m_colour)
 	, m_enginesActive(s.m_enginesActive)
+	, m_lastEnginesActive(s.m_lastEnginesActive)
 	, m_moveForward(s.m_moveForward)
 	, m_moveBackward(s.m_moveBackward)
 	, m_turnLeft(s.m_turnLeft)
@@ -48,6 +55,7 @@ SpaceShip::SpaceShip(const SpaceShip & s)
 	, m_initialLaserBeamSpawned(s.m_initialLaserBeamSpawned)
 	, m_fireLaserTimeElapsed(s.m_fireLaserTimeElapsed)
 	, m_movementDirection(s.m_movementDirection)
+	, m_lastMovementDirection(s.m_lastMovementDirection)
 	, m_projectileSystem(s.m_projectileSystem) {
 	for(int i=0;i<s.m_idleSprites.size();i++) {
 		m_idleSprites.push_back(s.m_idleSprites[i]);
@@ -70,6 +78,7 @@ SpaceShip & SpaceShip::operator = (const SpaceShip & s) {
 
 	m_colour = s.m_colour;
 	m_enginesActive = s.m_enginesActive;
+	m_lastEnginesActive = s.m_lastEnginesActive;
 	m_moveForward = s.m_moveForward;
 	m_moveBackward = s.m_moveBackward;
 	m_turnLeft = s.m_turnLeft;
@@ -78,6 +87,7 @@ SpaceShip & SpaceShip::operator = (const SpaceShip & s) {
 	m_initialLaserBeamSpawned = s.m_initialLaserBeamSpawned;
 	m_fireLaserTimeElapsed = s.m_fireLaserTimeElapsed;
 	m_movementDirection = s.m_movementDirection;
+	m_lastMovementDirection = s.m_lastMovementDirection;
 	m_projectileSystem = s.m_projectileSystem;
 
 	for(int i=0;i<s.m_idleSprites.size();i++) {
@@ -203,8 +213,6 @@ void SpaceShip::reset() {
 void SpaceShip::update(unsigned int timeElapsed) {
 	AnimatedEntity2D::update(timeElapsed);
 
-	static bool lastEngineState = m_enginesActive;
-
 	if(!SpaceShipMovementDirections::isValid(m_movementDirection)) { return; }
 
 	m_movementDirection = SpaceShipMovementDirections::Idle;
@@ -293,12 +301,14 @@ void SpaceShip::update(unsigned int timeElapsed) {
 
 	int spriteIndex = m_movementDirection == SpaceShipMovementDirections::TurnLeft ? 0 : (m_movementDirection == SpaceShipMovementDirections::TurnRight ? 2 : 1);
 
+	
 	if(m_enginesActive) {
 		m_movementAnimations[spriteIndex]->update(timeElapsed);
+
 		m_sprite = m_movementAnimations[spriteIndex]->getCurrentSprite();
 	}
 	else {
-		if(!m_enginesActive && lastEngineState) {
+		if(!m_enginesActive && m_lastEnginesActive) {
 			for(int i=0;i<m_movementAnimations.size();i++) {
 				m_movementAnimations[i]->reset();
 			}
@@ -307,7 +317,8 @@ void SpaceShip::update(unsigned int timeElapsed) {
 		m_sprite = m_idleSprites[spriteIndex];
 	}
 
-	lastEngineState = m_enginesActive;
+	m_lastEnginesActive = m_enginesActive;
+	m_lastMovementDirection = m_movementDirection;
 }
 
 void SpaceShip::updateVelocity(float acceleration, unsigned int timeElapsed) {
